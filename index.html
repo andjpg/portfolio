@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshdeep Singh — Model 2026</title>
+<meta name="description" content="Harshdeep Singh — one hire, four configurations: Product, Consulting, Data, Engineering.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-mode="overview">
+
+<nav class="nav">
+  <div class="nav__links">
+    <a href="#experience">Experience</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav__resume" href="https://drive.google.com/file/d/1-5M2BheT80IlMUJ9oXyYekqQb4ygV8jG/view?usp=sharing" target="_blank" rel="noopener">Résumé ↓</a>
+</nav>
+
+<main>
+
+  <!-- HERO + CONFIGURATOR -->
+  <section class="hero" id="top">
+    <h1 class="hero__name">Harshdeep Singh</h1>
+    <p class="hero__sub">One hire. Four configurations.</p>
+
+    <div class="configurator">
+
+      <!-- DIAL -->
+      <div class="dial" id="dial" tabindex="0" aria-label="Configuration dial. Use arrow keys or drag to select.">
+        <div class="dial__ring"></div>
+        <div class="dial__needle" id="needle"></div>
+        <button class="dial__hub" id="hub" aria-label="Reset to overview">
+          <span id="hub-label">ALL-ROUNDER</span>
+        </button>
+        <button class="dial__stop dial__stop--top" data-mode="product" aria-pressed="false">
+          <span class="dot" data-dot="product"></span>Product
+        </button>
+        <button class="dial__stop dial__stop--right" data-mode="consulting" aria-pressed="false">
+          <span class="dot" data-dot="consulting"></span>Consulting
+        </button>
+        <button class="dial__stop dial__stop--bottom" data-mode="data" aria-pressed="false">
+          <span class="dot" data-dot="data"></span>Data
+        </button>
+        <button class="dial__stop dial__stop--left" data-mode="engineering" aria-pressed="false">
+          <span class="dot" data-dot="engineering"></span>Engineering
+        </button>
+      </div>
+
+      <!-- SPEC SHEET -->
+      <div class="spec">
+        <p class="spec__row">
+          <span class="spec__label">Configuration</span>
+          <span class="spec__value" id="spec-config">All-rounder</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Core stack</span>
+          <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Proven at</span>
+          <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Shipped</span>
+          <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Deploy when</span>
+          <span class="spec__value" id="spec-deploy">You need more than one job filled at once</span>
+        </p>
+      </div>
+
+    </div>
+
+    <p class="hero__hint">drag the dial, or tap a stop</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <p class="eyebrow">Experience</p>
+
+    <div class="timeline">
+
+      <article class="tl-item" data-mode="consulting">
+        <div class="tl-item__when">
+          <span class="tl-item__date">Oct 2025 — Present</span>
+          <span class="tl-item__tag" data-tag="consulting">Consulting</span>
+        </div>
+        <div class="tl-item__body">
+          <h3>Associate Consultant · PwC, Mumbai</h3>
+          <ul>
+            <li>Cleaned material-management master data for a live SAP IBP rollout at a leading agrochemical firm.</li>
+            <li>Built an automated dashboard to flag master-data anomalies and trigger fixes.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="tl-item" data-mode="product">
+        <div class="tl-item__when">
+          <span class="tl-item__date">Apr 2024 – Jun 2024, Apr 2025 – Aug 2025</span>
+          <span class="tl-item__tag" data-tag="product">Product</span>
+        </div>
+        <div class="tl-item__body">
+          <h3>Product Manager, Founder's Office · WizLearnr, Mumbai</h3>
+          <ul>
+            <li>Ran discovery for a Socratic AI copilot — 100+ user interviews, 5 wireframes, MVP roadmap shortlisted by the Telangana Government.</li>
+            <li>Built a RAG evaluation framework to guide conversational-quality improvements.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="tl-item" data-mode="engineering">
+        <div class="tl-item__when">
+          <span class="tl-item__date">Jan 2022 — Jun 2023</span>
+          <span class="tl-item__tag" data-tag="engineering">Engineering</span>
+        </div>
+        <div class="tl-item__body">
+          <h3>Software Engineer · Guidewire Software, Bangalore</h3>
+          <ul>
+            <li>Shipped 6+ features for the Guidewire Cloud Platform at 80% code coverage.</li>
+            <li>Closed 30+ vulnerabilities and built an auth mechanism for third-party integrations as security champion.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="tl-item" data-mode="data">
+        <div class="tl-item__when">
+          <span class="tl-item__date">Oct 2020 — Dec 2021</span>
+          <span class="tl-item__tag" data-tag="data">Data</span>
+        </div>
+        <div class="tl-item__body">
+          <h3>Senior Analyst · Capgemini, Remote</h3>
+          <ul>
+            <li>Migrated Teradata to Snowflake — 20M+ data points, 60K+ objects automated, 15 custom Python scripts.</li>
+            <li>Cut compute costs 30% and outbound processing from 24h to under 7h. Rising Star of the Month.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="tl-item" data-mode="data">
+        <div class="tl-item__when">
+          <span class="tl-item__date">Jan 2020 — May 2020</span>
+          <span class="tl-item__tag" data-tag="data">Data</span>
+        </div>
+        <div class="tl-item__body">
+          <h3>Machine Learning Intern · Samsung R&amp;D Institute</h3>
+          <ul>
+            <li>Built an audio-based gallery search feature with MobileNetV2 — 90% training accuracy, 1,500+ audio files across 20 classes.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="edu-strip">
+      <p><span>BITSoM, BITS Pilani</span><span>MBA</span><span>2023–2025</span><span>GPA 3.3/4</span></p>
+      <p><span>Thapar Institute of Engineering &amp; Technology</span><span>B.E., Electronics &amp; Computers</span><span>2016–2020</span><span>CGPA 8.46/10</span></p>
+    </div>
+  </section>
+
+  <!-- WORK / PROJECTS -->
+  <section class="section" id="work">
+    <p class="eyebrow">Selected work</p>
+
+    <div class="work-grid">
+      <article class="work-card" data-mode="consulting">
+        <span class="work-card__tag" data-tag="consulting">Consulting</span>
+        <h3>HP Tech Ventures Externship</h3>
+        <p>Sourced startups against HP's investment thesis to support VC due diligence.</p>
+      </article>
+
+      <article class="work-card" data-mode="data">
+        <span class="work-card__tag" data-tag="data">Data</span>
+        <h3>Consilience.AI — AlphaIQ Beta</h3>
+        <p>Beta-tested an LLM risk-analysis tool for NYSE-listed firms; recommended model and UI fixes.</p>
+      </article>
+    </div>
+
+    <a class="work-cta" href="https://drive.google.com/drive/folders/11_wQbaVWUSu5bs67gZ-zLNTzkMA_i_I-?usp=sharing" target="_blank" rel="noopener">Full case studies →</a>
+  </section>
+
+  <!-- FULL STACK -->
+  <section class="section section--tight" id="stack">
+    <p class="eyebrow">Full stack</p>
+    <div class="chip-row" id="chip-row">
+      <span class="chip" data-mode="product">Prompt Engineering</span>
+      <span class="chip" data-mode="product">Wireframing</span>
+      <span class="chip" data-mode="product">Market Research</span>
+      <span class="chip" data-mode="product">Product Benchmarking</span>
+      <span class="chip" data-mode="product">No-Code Tools</span>
+      <span class="chip" data-mode="consulting">Strategy</span>
+      <span class="chip" data-mode="consulting">Financial Modeling</span>
+      <span class="chip" data-mode="consulting">Sensitivity Analysis</span>
+      <span class="chip" data-mode="consulting">SAP IBP</span>
+      <span class="chip" data-mode="consulting">Stakeholder Management</span>
+      <span class="chip" data-mode="data">Snowflake</span>
+      <span class="chip" data-mode="data">Python</span>
+      <span class="chip" data-mode="data">Tableau</span>
+      <span class="chip" data-mode="data">Machine Learning</span>
+      <span class="chip" data-mode="data">Deep Learning</span>
+      <span class="chip" data-mode="engineering">Java</span>
+      <span class="chip" data-mode="engineering">AWS</span>
+      <span class="chip" data-mode="engineering">Security &amp; Auth</span>
+      <span class="chip" data-mode="engineering">Gen AI</span>
+      <span class="chip" data-mode="engineering">Cloud Platforms</span>
+    </div>
+  </section>
+
+  <!-- TRACK RECORD -->
+  <section class="section section--tight" id="more">
+    <p class="eyebrow">Track record</p>
+    <div class="record">
+      <div class="record__group">
+        <p class="record__label">Case comps</p>
+        <div class="chip-row chip-row--flat">
+          <span class="chip chip--flat">Product Folks Teardown '25</span>
+          <span class="chip chip--flat">MDI Gurgaon PM Case '24</span>
+          <span class="chip chip--flat">PM School Teardown '23</span>
+          <span class="chip chip--flat">SIBM Pune PM Case '23</span>
+        </div>
+      </div>
+      <div class="record__group">
+        <p class="record__label">Certifications</p>
+        <div class="chip-row chip-row--flat">
+          <span class="chip chip--flat">Product Analytics</span>
+          <span class="chip chip--flat">Prompt Engineering for Everyone</span>
+          <span class="chip chip--flat">30 Days of Google Cloud</span>
+          <span class="chip chip--flat">Python for Developers</span>
+          <span class="chip chip--flat">AI Micro-Certification</span>
+          <span class="chip chip--flat">Google Project Management</span>
+        </div>
+      </div>
+      <div class="record__group">
+        <p class="record__label">Olympiads</p>
+        <div class="chip-row chip-row--flat">
+          <span class="chip chip--flat">SOF NSO '13</span>
+          <span class="chip chip--flat">SOF IMO '14</span>
+          <span class="chip chip--flat">SOF NCO '15</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <p class="eyebrow eyebrow--light">Contact</p>
+    <h2 class="contact__heading">Let's talk.</h2>
+    <div class="contact__links">
+      <a href="mailto:dharsh7777@gmail.com">dharsh7777@gmail.com</a>
+      <a href="https://wa.me/917355120100" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#" target="_blank" rel="noopener" id="linkedin-link">LinkedIn</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>Harshdeep Singh</span>
+  <span>Model 2026</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
