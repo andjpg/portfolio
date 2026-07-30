@@ -1,35 +1,29 @@
 /* ---------- Tokens ---------- */
 :root {
-  --bg-0: #0a0a0c;
-  --bg-1: #131316;
-  --bg-2: #1c1c20;
+  --bg-0: #0b1220;
+  --bg-1: #121b2e;
+  --bg-2: #1b2740;
 
-  --text: #f3f1ea;
-  --text-soft: #9b968c;
-  --line: rgba(243, 241, 234, 0.1);
+  --text: #f2efe6;
+  --text-soft: #8b93a8;
+  --line: rgba(242, 239, 230, 0.1);
 
-  --glass-fill: rgba(255, 255, 255, 0.05);
-  --glass-fill-strong: rgba(255, 255, 255, 0.09);
-  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-fill: rgba(255, 255, 255, 0.045);
+  --glass-fill-strong: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
 
-  --accent: #d8d4c8;
-  --c-overview: #d8d4c8;
-  --c-product: #ff5b3d;
-  --c-consulting: #2fd0e0;
-  --c-data: #4cd08a;
-  --c-engineering: #ab8bfa;
+  --accent: #c9a15a;
+  --c-overview: #c9a15a;
+  --c-product: #d1495b;
+  --c-consulting: #3f8fd1;
+  --c-data: #3fae7a;
+  --c-engineering: #9a6fd1;
 
   --font-display: "Fraunces", serif;
   --font-body: "Inter", -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 
   --wrap: 880px;
-}
-
-@property --angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
 }
 
 * { box-sizing: border-box; }
@@ -40,12 +34,13 @@
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 20% -10%, var(--bg-2), var(--bg-0) 60%);
+  background: radial-gradient(circle at 15% -10%, var(--bg-2), var(--bg-0) 60%);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.55;
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 a { color: inherit; }
@@ -57,11 +52,11 @@ button { font-family: inherit; }
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(110px);
+  filter: blur(120px);
   transition: background 0.8s ease;
 }
-.blob--a { width: 560px; height: 560px; top: -160px; left: -140px; background: var(--accent); opacity: 0.28; }
-.blob--b { width: 460px; height: 460px; bottom: -140px; right: -100px; background: var(--accent); opacity: 0.18; }
+.blob--a { width: 520px; height: 520px; top: -160px; right: -120px; background: var(--accent); opacity: 0.16; }
+.blob--b { width: 420px; height: 420px; bottom: -140px; left: -100px; background: var(--accent); opacity: 0.1; }
 
 /* ---------- Nav ---------- */
 .nav {
@@ -73,7 +68,7 @@ button { font-family: inherit; }
   justify-content: flex-end;
   gap: 28px;
   padding: 18px 32px;
-  background: rgba(10, 10, 12, 0.6);
+  background: rgba(11, 18, 32, 0.65);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -105,7 +100,18 @@ button { font-family: inherit; }
 }
 
 /* ---------- Hero ---------- */
-.hero { max-width: 720px; margin: 0 auto; padding: 64px 24px 32px; text-align: center; }
+.hero { max-width: 1040px; margin: 0 auto; padding: 64px 32px 40px; }
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 56px;
+}
+
+@media (max-width: 860px) {
+  .hero__grid { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+}
 
 .hero__kicker {
   display: inline-flex;
@@ -127,187 +133,25 @@ button { font-family: inherit; }
 
 .hero__headline {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(24px, 3.4vw, 32px);
-  line-height: 1.25;
-  margin: 0 0 8px;
+  font-weight: 600;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  margin: 0 0 36px;
   color: var(--text);
-}
-
-/* ---------- Dial ---------- */
-.dial-stage { display: flex; justify-content: center; margin: 44px auto 44px; }
-
-.dial {
-  position: relative;
-  width: clamp(260px, 42vw, 440px);
-  height: clamp(260px, 42vw, 440px);
-  border-radius: 50%;
-  cursor: grab;
-  touch-action: none;
-}
-.dial:active { cursor: grabbing; }
-.dial:focus-visible { outline: 2px solid var(--accent); outline-offset: 10px; }
-
-.dial__glow {
-  position: absolute;
-  inset: -14%;
-  border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 40%, transparent) 0%, transparent 68%);
-  filter: blur(28px);
-  transition: background 0.5s ease;
-  pointer-events: none;
-}
-
-.dial__ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.16), transparent 45%),
-    linear-gradient(160deg, var(--bg-2), var(--bg-1) 55%, var(--bg-0));
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    inset 0 -24px 50px rgba(0, 0, 0, 0.55),
-    0 30px 70px -20px rgba(0, 0, 0, 0.75);
-}
-
-.dial__sheen {
-  position: absolute;
-  inset: 5%;
-  border-radius: 50%;
-  background: conic-gradient(from 200deg, rgba(255, 255, 255, 0.09), transparent 28%, transparent 68%, rgba(255, 255, 255, 0.06));
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-.dial__needle {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 6px;
-  height: 37%;
-  background: linear-gradient(var(--accent), color-mix(in srgb, var(--accent) 30%, transparent));
-  border-radius: 4px;
-  transform-origin: top center;
-  transform: translateX(-50%) rotate(var(--angle, 0deg));
-  box-shadow: 0 0 20px 2px color-mix(in srgb, var(--accent) 65%, transparent);
-  transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
-  opacity: 0.32;
-  pointer-events: none;
-}
-.dial__needle::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 16px 3px color-mix(in srgb, var(--accent) 75%, transparent);
-}
-
-.dial__hub {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 38%;
-  height: 38%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.14), var(--bg-1) 62%);
-  border: 1px solid var(--glass-border);
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.22),
-    inset 0 -12px 22px rgba(0, 0, 0, 0.5),
-    0 12px 28px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 10%;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-.dial__hub:hover { transform: translate(-50%, -50%) scale(1.04); }
-.dial__hub:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.dial__hub span {
-  font-family: var(--font-mono);
-  font-size: clamp(10px, 1.7vw, 13px);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text);
-}
-
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
-  70% { box-shadow: 0 0 0 26px transparent; }
-  100% { box-shadow: 0 0 0 0 transparent; }
-}
-.dial__hub.is-pulsing { animation: pulseGlow 0.7s ease-out; }
-
-.dial__stop {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--glass-fill);
-  backdrop-filter: blur(6px);
-  border: 1px solid var(--glass-border);
-  color: var(--text-soft);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 7px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
-}
-.dial__stop:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-.dial__stop--top    { top: 0;    left: 50%;  transform: translate(-50%, -50%); }
-.dial__stop--right  { top: 50%; left: 100%; transform: translate(-50%, -50%); }
-.dial__stop--bottom { top: 100%; left: 50%;  transform: translate(-50%, -50%); }
-.dial__stop--left   { top: 50%; left: 0;    transform: translate(-50%, -50%); }
-.dial__stop--top:hover    { transform: translate(-50%, -50%) scale(1.06); }
-.dial__stop--right:hover  { transform: translate(-50%, -50%) scale(1.06); }
-.dial__stop--bottom:hover { transform: translate(-50%, -50%) scale(1.06); }
-.dial__stop--left:hover   { transform: translate(-50%, -50%) scale(1.06); }
-
-.dial__stop .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-
-.dial__stop[data-mode="product"].is-active { border-color: var(--c-product); color: var(--c-product); background: color-mix(in srgb, var(--c-product) 16%, var(--glass-fill)); box-shadow: 0 0 16px -4px var(--c-product); }
-.dial__stop[data-mode="consulting"].is-active { border-color: var(--c-consulting); color: var(--c-consulting); background: color-mix(in srgb, var(--c-consulting) 16%, var(--glass-fill)); box-shadow: 0 0 16px -4px var(--c-consulting); }
-.dial__stop[data-mode="data"].is-active { border-color: var(--c-data); color: var(--c-data); background: color-mix(in srgb, var(--c-data) 16%, var(--glass-fill)); box-shadow: 0 0 16px -4px var(--c-data); }
-.dial__stop[data-mode="engineering"].is-active { border-color: var(--c-engineering); color: var(--c-engineering); background: color-mix(in srgb, var(--c-engineering) 16%, var(--glass-fill)); box-shadow: 0 0 16px -4px var(--c-engineering); }
-
-.dot[data-dot="product"] { color: var(--c-product); }
-.dot[data-dot="consulting"] { color: var(--c-consulting); }
-.dot[data-dot="data"] { color: var(--c-data); }
-.dot[data-dot="engineering"] { color: var(--c-engineering); }
-
-@media (max-width: 400px) {
-  .dial__needle { height: 34%; }
 }
 
 /* ---------- Spec card ---------- */
 .spec-card {
-  max-width: 620px;
-  margin: 0 auto;
+  max-width: 480px;
   background: var(--glass-fill);
   backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 26px 30px;
+  border-radius: 18px;
+  padding: 24px 26px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px 32px;
-  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
-  text-align: left;
+  gap: 14px 28px;
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7);
 }
 .spec__row--wide { grid-column: 1 / -1; }
 .spec__row {
@@ -315,7 +159,7 @@ button { font-family: inherit; }
   flex-direction: column;
   gap: 4px;
   margin: 0;
-  padding-bottom: 14px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
 }
 .spec__label {
@@ -325,11 +169,11 @@ button { font-family: inherit; }
   letter-spacing: 0.06em;
   color: var(--text-soft);
 }
-.spec__value { font-size: 14.5px; font-weight: 500; transition: color 0.3s ease; }
-#spec-config { color: var(--accent); font-family: var(--font-mono); text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em; }
+.spec__value { font-size: 14px; font-weight: 500; transition: color 0.3s ease; }
+#spec-config { color: var(--accent); font-family: var(--font-mono); text-transform: uppercase; font-size: 12.5px; letter-spacing: 0.04em; }
 
-@media (max-width: 560px) {
-  .spec-card { grid-template-columns: 1fr; padding: 22px; }
+@media (max-width: 480px) {
+  .spec-card { grid-template-columns: 1fr; }
 }
 
 .hero__hint {
@@ -337,7 +181,97 @@ button { font-family: inherit; }
   font-size: 12px;
   color: var(--text-soft);
   opacity: 0.65;
-  margin: 32px 0 0;
+  margin: 28px 0 0;
+}
+
+/* ---------- Reel ---------- */
+.reel-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1101px) {
+  .reel-stage { margin-right: -56px; }
+}
+
+.reel__nav {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-border);
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.reel__nav:hover { background: var(--glass-fill-strong); color: var(--text); transform: scale(1.06); }
+.reel__nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.reel {
+  position: relative;
+  width: 240px;
+  height: 174px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.08),
+    inset 0 -20px 34px rgba(0, 0, 0, 0.5),
+    0 30px 60px -24px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
+}
+.reel:active { cursor: grabbing; }
+.reel:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.reel__marker {
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 58px;
+  transform: translateY(-50%);
+  border-top: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  transition: border-color 0.4s ease, background 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.reel__track {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.65s cubic-bezier(0.22, 1.4, 0.36, 1);
+  will-change: transform;
+}
+
+.reel__item {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--text-soft);
+  opacity: 0.4;
+  transform: scale(0.9);
+  transition: color 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+  user-select: none;
+}
+.reel__item.is-center {
+  color: var(--text);
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* ---------- Sections ---------- */
@@ -379,6 +313,7 @@ button { font-family: inherit; }
   border-radius: 999px;
   width: fit-content;
   color: var(--bg-0);
+  font-weight: 600;
 }
 .tl-item__tag[data-tag="product"] { background: var(--c-product); }
 .tl-item__tag[data-tag="consulting"] { background: var(--c-consulting); }
@@ -437,6 +372,7 @@ button { font-family: inherit; }
   padding: 4px 10px;
   border-radius: 999px;
   color: var(--bg-0);
+  font-weight: 600;
   display: inline-block;
   margin-bottom: 12px;
 }

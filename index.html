@@ -30,59 +30,62 @@
 
 <main>
 
-  <!-- HERO + DIAL -->
+  <!-- HERO + REEL -->
   <section class="hero" id="top">
-    <p class="hero__kicker"><span class="kicker-dot"></span>Harshdeep Singh</p>
-    <h1 class="hero__headline">One hire. Four configurations.<br>Zero assembly required.</h1>
+    <div class="hero__grid">
 
-    <div class="dial-stage">
-      <div class="dial" id="dial" tabindex="0" aria-label="Configuration dial. Drag to spin, or use arrow keys.">
-        <div class="dial__glow" aria-hidden="true"></div>
-        <div class="dial__ring"></div>
-        <div class="dial__sheen" aria-hidden="true"></div>
-        <div class="dial__needle" id="needle"></div>
-        <button class="dial__hub" id="hub" aria-label="Reset to default build">
-          <span id="hub-label">DEFAULT BUILD</span>
+      <div class="hero__content">
+        <p class="hero__kicker"><span class="kicker-dot"></span>Harshdeep Singh</p>
+        <h1 class="hero__headline">One hire.<br>Four configurations.</h1>
+
+        <div class="spec-card">
+          <p class="spec__row">
+            <span class="spec__label">Configuration</span>
+            <span class="spec__value" id="spec-config">Default Build</span>
+          </p>
+          <p class="spec__row">
+            <span class="spec__label">Core stack</span>
+            <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
+          </p>
+          <p class="spec__row">
+            <span class="spec__label">Proven at</span>
+            <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
+          </p>
+          <p class="spec__row">
+            <span class="spec__label">Shipped</span>
+            <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
+          </p>
+          <p class="spec__row spec__row--wide">
+            <span class="spec__label">Deploy when</span>
+            <span class="spec__value" id="spec-deploy">You need more than one job filled at once</span>
+          </p>
+        </div>
+
+        <p class="hero__hint">scroll the reel, or click a row</p>
+      </div>
+
+      <div class="reel-stage">
+        <button class="reel__nav" id="reel-up" aria-label="Previous configuration">
+          <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 8L7 2L13 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <button class="dial__stop dial__stop--top" data-mode="product" aria-pressed="false">
-          <span class="dot" data-dot="product"></span>Product
-        </button>
-        <button class="dial__stop dial__stop--right" data-mode="consulting" aria-pressed="false">
-          <span class="dot" data-dot="consulting"></span>Consulting
-        </button>
-        <button class="dial__stop dial__stop--bottom" data-mode="data" aria-pressed="false">
-          <span class="dot" data-dot="data"></span>Data
-        </button>
-        <button class="dial__stop dial__stop--left" data-mode="engineering" aria-pressed="false">
-          <span class="dot" data-dot="engineering"></span>Engineering
+
+        <div class="reel" id="reel" tabindex="0" aria-label="Configuration reel. Drag, scroll, or use arrow keys to select.">
+          <div class="reel__marker" aria-hidden="true"></div>
+          <ul class="reel__track" id="reel-track">
+            <li class="reel__item" data-mode="overview">Default</li>
+            <li class="reel__item" data-mode="product">Product</li>
+            <li class="reel__item" data-mode="consulting">Consulting</li>
+            <li class="reel__item" data-mode="data">Data</li>
+            <li class="reel__item" data-mode="engineering">Engineering</li>
+          </ul>
+        </div>
+
+        <button class="reel__nav" id="reel-down" aria-label="Next configuration">
+          <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
-    </div>
 
-    <div class="spec-card">
-      <p class="spec__row">
-        <span class="spec__label">Configuration</span>
-        <span class="spec__value" id="spec-config">Default Build</span>
-      </p>
-      <p class="spec__row">
-        <span class="spec__label">Core stack</span>
-        <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
-      </p>
-      <p class="spec__row">
-        <span class="spec__label">Proven at</span>
-        <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
-      </p>
-      <p class="spec__row">
-        <span class="spec__label">Shipped</span>
-        <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
-      </p>
-      <p class="spec__row spec__row--wide">
-        <span class="spec__label">Deploy when</span>
-        <span class="spec__value" id="spec-deploy">You need more than one job filled at once</span>
-      </p>
     </div>
-
-    <p class="hero__hint">drag the dial, or tap a stop — it's sturdier than it looks</p>
   </section>
 
   <!-- EXPERIENCE -->

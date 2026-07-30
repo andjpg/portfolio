@@ -1,15 +1,14 @@
 (function () {
   const root = document.documentElement;
   const body = document.body;
-  const dial = document.getElementById("dial");
-  const needle = document.getElementById("needle");
-  const hub = document.getElementById("hub");
-  const hubLabel = document.getElementById("hub-label");
-  const stops = document.querySelectorAll(".dial__stop");
+  const reel = document.getElementById("reel");
+  const track = document.getElementById("reel-track");
+  const items = Array.from(track.querySelectorAll(".reel__item"));
+  const upBtn = document.getElementById("reel-up");
+  const downBtn = document.getElementById("reel-down");
   const toast = document.getElementById("toast");
 
-  const MODES = ["product", "consulting", "data", "engineering"];
-  const ANGLES = { product: 0, consulting: 90, data: 180, engineering: 270 };
+  const MODES = ["overview", "product", "consulting", "data", "engineering"];
 
   const specData = {
     overview: {
@@ -69,21 +68,33 @@
     "[data-mode].tl-item, [data-mode].work-card, [data-mode].chip"
   );
 
-  let currentMode = "overview";
+  const ITEM_H = items[0].getBoundingClientRect().height || 58;
+  const WINDOW_H = reel.getBoundingClientRect().height || 174;
+  const CENTER_OFFSET = WINDOW_H / 2 - ITEM_H / 2;
 
-  function pulseHub() {
-    hub.classList.remove("is-pulsing");
-    // force reflow so the animation can restart
-    void hub.offsetWidth;
-    hub.classList.add("is-pulsing");
+  let index = 0; // matches MODES array
+  let baseY = CENTER_OFFSET; // translateY at rest for index 0
+
+  function yForIndex(i) {
+    return CENTER_OFFSET - i * ITEM_H;
+  }
+
+  function setTrackY(y, animate) {
+    track.style.transition = animate ? "" : "none";
+    track.style.transform = "translateY(" + y + "px)";
+  }
+
+  function updateItemStyles(activeIdx) {
+    items.forEach((item, i) => item.classList.toggle("is-center", i === activeIdx));
   }
 
   function applyMode(mode, opts) {
     opts = opts || {};
-    const changed = mode !== currentMode;
-    currentMode = mode;
-    body.dataset.mode = mode;
+    const idx = MODES.indexOf(mode);
+    if (idx === -1) return;
+    index = idx;
 
+    body.dataset.mode = mode;
     const accent = getComputedStyle(root).getPropertyValue(accentVar[mode]).trim();
     root.style.setProperty("--accent", accent);
 
@@ -94,13 +105,7 @@
     specEls.shipped.textContent = d.shipped;
     specEls.deploy.textContent = d.deploy;
 
-    hubLabel.textContent = mode === "overview" ? "DEFAULT BUILD" : mode.toUpperCase();
-
-    stops.forEach((stop) => {
-      const active = stop.dataset.mode === mode;
-      stop.classList.toggle("is-active", active);
-      stop.setAttribute("aria-pressed", String(active));
-    });
+    updateItemStyles(idx);
 
     syncedItems.forEach((item) => {
       if (mode === "overview") {
@@ -114,99 +119,68 @@
       }
     });
 
-    if (mode === "overview") {
-      needle.style.opacity = "0.32";
-    } else {
-      needle.style.opacity = "1";
-      if (!opts.skipAngle) {
-        needle.style.setProperty("--angle", ANGLES[mode] + "deg");
-      }
-    }
-
-    if (changed && !opts.silent) pulseHub();
+    if (!opts.skipMove) setTrackY(yForIndex(idx), true);
   }
 
-  // --- click on a stop ---
-  stops.forEach((stop) => {
-    stop.addEventListener("click", () => applyMode(stop.dataset.mode));
+  // --- click a row directly ---
+  items.forEach((item, i) => {
+    item.addEventListener("click", () => applyMode(MODES[i]));
   });
 
-  // --- click on hub resets to overview ---
-  hub.addEventListener("click", () => applyMode("overview"));
-
-  // --- keyboard: arrow keys cycle modes when dial is focused ---
-  dial.addEventListener("keydown", (e) => {
-    if (!["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown"].includes(e.key)) return;
-    e.preventDefault();
-    const idx = MODES.indexOf(currentMode);
-    let next;
-    if (idx === -1) {
-      next = e.key === "ArrowLeft" || e.key === "ArrowUp" ? MODES.length - 1 : 0;
-    } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-      next = (idx + 1) % MODES.length;
-    } else {
-      next = (idx - 1 + MODES.length) % MODES.length;
-    }
+  // --- up / down buttons ---
+  function step(delta) {
+    const next = Math.max(0, Math.min(MODES.length - 1, index + delta));
     applyMode(MODES[next]);
+  }
+  upBtn.addEventListener("click", () => step(-1));
+  downBtn.addEventListener("click", () => step(1));
+
+  // --- keyboard ---
+  reel.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp") { e.preventDefault(); step(-1); }
+    if (e.key === "ArrowDown") { e.preventDefault(); step(1); }
   });
 
-  // --- drag to spin ---
+  // --- drag to scroll ---
   let dragging = false;
-  let lastAngle = 0;
-  let totalRotation = 0;
+  let startY = 0;
+  let startTrackY = 0;
+  let totalDrag = 0;
   let eggFired = false;
 
-  function angleFromPointer(clientX, clientY) {
-    const rect = dial.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = clientX - cx;
-    const dy = clientY - cy;
-    let deg = (Math.atan2(dx, -dy) * 180) / Math.PI;
-    if (deg < 0) deg += 360;
-    return deg;
-  }
-
-  function nearestMode(deg) {
-    let best = MODES[0];
-    let bestDiff = 360;
-    MODES.forEach((m) => {
-      let diff = Math.abs(deg - ANGLES[m]);
-      if (diff > 180) diff = 360 - diff;
-      if (diff < bestDiff) {
-        bestDiff = diff;
-        best = m;
-      }
-    });
-    return best;
+  function currentTrackY() {
+    const t = track.style.transform.match(/-?\d+(\.\d+)?/);
+    return t ? parseFloat(t[0]) : yForIndex(index);
   }
 
   function startDrag(e) {
-    if (e.target.closest(".dial__stop") || e.target.closest(".dial__hub")) return;
     dragging = true;
-    totalRotation = 0;
+    totalDrag = 0;
     eggFired = false;
-    lastAngle = angleFromPointer(e.clientX, e.clientY);
-    needle.style.transition = "none";
-    needle.style.opacity = "1";
-    dial.setPointerCapture(e.pointerId);
+    startY = e.clientY;
+    startTrackY = currentTrackY();
+    setTrackY(startTrackY, false);
+    reel.setPointerCapture(e.pointerId);
   }
 
   function moveDrag(e) {
     if (!dragging) return;
-    const deg = angleFromPointer(e.clientX, e.clientY);
-    needle.style.setProperty("--angle", deg + "deg");
+    const delta = e.clientY - startY;
+    totalDrag += Math.abs(e.movementY || 0);
+    let y = startTrackY + delta;
 
-    let delta = deg - lastAngle;
-    if (delta > 180) delta -= 360;
-    if (delta < -180) delta += 360;
-    totalRotation += Math.abs(delta);
-    lastAngle = deg;
+    // soft clamp beyond the ends for a physical "stop" feel
+    const minY = yForIndex(MODES.length - 1);
+    const maxY = yForIndex(0);
+    if (y > maxY) y = maxY + (y - maxY) * 0.35;
+    if (y < minY) y = minY + (y - minY) * 0.35;
 
-    const guess = nearestMode(deg);
-    hubLabel.textContent = guess.toUpperCase();
+    setTrackY(y, false);
 
-    if (!eggFired && totalRotation >= 720) {
+    const nearestIdx = Math.max(0, Math.min(MODES.length - 1, Math.round((CENTER_OFFSET - y) / ITEM_H)));
+    updateItemStyles(nearestIdx);
+
+    if (!eggFired && totalDrag >= 900) {
       eggFired = true;
       triggerOverclock();
     }
@@ -215,16 +189,26 @@
   function endDrag(e) {
     if (!dragging) return;
     dragging = false;
-    needle.style.transition = "";
-    const deg = angleFromPointer(e.clientX, e.clientY);
-    const mode = nearestMode(deg);
-    applyMode(mode);
+    const y = currentTrackY();
+    const nearestIdx = Math.max(0, Math.min(MODES.length - 1, Math.round((CENTER_OFFSET - y) / ITEM_H)));
+    applyMode(MODES[nearestIdx]);
   }
 
-  dial.addEventListener("pointerdown", startDrag);
-  dial.addEventListener("pointermove", moveDrag);
-  dial.addEventListener("pointerup", endDrag);
-  dial.addEventListener("pointercancel", endDrag);
+  reel.addEventListener("pointerdown", startDrag);
+  reel.addEventListener("pointermove", moveDrag);
+  reel.addEventListener("pointerup", endDrag);
+  reel.addEventListener("pointercancel", endDrag);
+
+  // --- mouse wheel over the reel also scrolls it ---
+  reel.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
+      if (e.deltaY > 0) step(1);
+      else if (e.deltaY < 0) step(-1);
+    },
+    { passive: false }
+  );
 
   // --- easter egg: overclock ---
   const EGG_MESSAGES = [
@@ -241,7 +225,7 @@
   }
 
   function burstConfetti() {
-    const rect = hub.getBoundingClientRect();
+    const rect = reel.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const colors = [
@@ -254,7 +238,7 @@
       const p = document.createElement("span");
       p.className = "particle";
       const angle = Math.random() * Math.PI * 2;
-      const dist = 80 + Math.random() * 120;
+      const dist = 70 + Math.random() * 110;
       p.style.left = cx + "px";
       p.style.top = cy + "px";
       p.style.background = colors[i % colors.length];
@@ -269,7 +253,6 @@
   function triggerOverclock() {
     burstConfetti();
     showToast(EGG_MESSAGES[Math.floor(Math.random() * EGG_MESSAGES.length)]);
-    pulseHub();
   }
 
   // fill in your real LinkedIn URL here once you have it handy
@@ -280,5 +263,6 @@
     });
   }
 
-  applyMode("overview", { silent: true });
+  setTrackY(yForIndex(0), false);
+  applyMode("overview", { skipMove: true });
 })();
