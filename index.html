@@ -13,10 +13,16 @@
 </head>
 <body data-mode="overview">
 
+<div class="bg-ambient" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+
 <nav class="nav">
   <div class="nav__links">
     <a href="#experience">Experience</a>
     <a href="#work">Work</a>
+    <a href="case-studies.html">Case Studies</a>
     <a href="#contact">Contact</a>
   </div>
   <a class="nav__resume" href="https://drive.google.com/file/d/1-5M2BheT80IlMUJ9oXyYekqQb4ygV8jG/view?usp=sharing" target="_blank" rel="noopener">Résumé ↓</a>
@@ -24,19 +30,19 @@
 
 <main>
 
-  <!-- HERO + CONFIGURATOR -->
+  <!-- HERO + DIAL -->
   <section class="hero" id="top">
-    <h1 class="hero__name">Harshdeep Singh</h1>
-    <p class="hero__sub">One hire. Four configurations.</p>
+    <p class="hero__kicker"><span class="kicker-dot"></span>Harshdeep Singh</p>
+    <h1 class="hero__headline">One hire. Four configurations.<br>Zero assembly required.</h1>
 
-    <div class="configurator">
-
-      <!-- DIAL -->
-      <div class="dial" id="dial" tabindex="0" aria-label="Configuration dial. Use arrow keys or drag to select.">
+    <div class="dial-stage">
+      <div class="dial" id="dial" tabindex="0" aria-label="Configuration dial. Drag to spin, or use arrow keys.">
+        <div class="dial__glow" aria-hidden="true"></div>
         <div class="dial__ring"></div>
+        <div class="dial__sheen" aria-hidden="true"></div>
         <div class="dial__needle" id="needle"></div>
-        <button class="dial__hub" id="hub" aria-label="Reset to overview">
-          <span id="hub-label">ALL-ROUNDER</span>
+        <button class="dial__hub" id="hub" aria-label="Reset to default build">
+          <span id="hub-label">DEFAULT BUILD</span>
         </button>
         <button class="dial__stop dial__stop--top" data-mode="product" aria-pressed="false">
           <span class="dot" data-dot="product"></span>Product
@@ -51,34 +57,32 @@
           <span class="dot" data-dot="engineering"></span>Engineering
         </button>
       </div>
-
-      <!-- SPEC SHEET -->
-      <div class="spec">
-        <p class="spec__row">
-          <span class="spec__label">Configuration</span>
-          <span class="spec__value" id="spec-config">All-rounder</span>
-        </p>
-        <p class="spec__row">
-          <span class="spec__label">Core stack</span>
-          <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
-        </p>
-        <p class="spec__row">
-          <span class="spec__label">Proven at</span>
-          <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
-        </p>
-        <p class="spec__row">
-          <span class="spec__label">Shipped</span>
-          <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
-        </p>
-        <p class="spec__row">
-          <span class="spec__label">Deploy when</span>
-          <span class="spec__value" id="spec-deploy">You need more than one job filled at once</span>
-        </p>
-      </div>
-
     </div>
 
-    <p class="hero__hint">drag the dial, or tap a stop</p>
+    <div class="spec-card">
+      <p class="spec__row">
+        <span class="spec__label">Configuration</span>
+        <span class="spec__value" id="spec-config">Default Build</span>
+      </p>
+      <p class="spec__row">
+        <span class="spec__label">Core stack</span>
+        <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
+      </p>
+      <p class="spec__row">
+        <span class="spec__label">Proven at</span>
+        <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
+      </p>
+      <p class="spec__row">
+        <span class="spec__label">Shipped</span>
+        <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
+      </p>
+      <p class="spec__row spec__row--wide">
+        <span class="spec__label">Deploy when</span>
+        <span class="spec__value" id="spec-deploy">You need more than one job filled at once</span>
+      </p>
+    </div>
+
+    <p class="hero__hint">drag the dial, or tap a stop — it's sturdier than it looks</p>
   </section>
 
   <!-- EXPERIENCE -->
@@ -182,7 +186,7 @@
       </article>
     </div>
 
-    <a class="work-cta" href="https://drive.google.com/drive/folders/11_wQbaVWUSu5bs67gZ-zLNTzkMA_i_I-?usp=sharing" target="_blank" rel="noopener">Full case studies →</a>
+    <a class="work-cta" href="case-studies.html">Full write-ups (in progress) →</a>
   </section>
 
   <!-- FULL STACK -->
@@ -264,6 +268,8 @@
   <span>Harshdeep Singh</span>
   <span>Model 2026</span>
 </footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="script.js"></script>
 </body>

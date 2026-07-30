@@ -6,13 +6,14 @@
   const hub = document.getElementById("hub");
   const hubLabel = document.getElementById("hub-label");
   const stops = document.querySelectorAll(".dial__stop");
+  const toast = document.getElementById("toast");
 
   const MODES = ["product", "consulting", "data", "engineering"];
   const ANGLES = { product: 0, consulting: 90, data: 180, engineering: 270 };
 
   const specData = {
     overview: {
-      config: "All-rounder",
+      config: "Default Build",
       stack: "Product · Consulting · Data · Engineering",
       proven: "PwC · WizLearnr · Guidewire · Capgemini · Samsung R&D",
       shipped: "6+ features · 20M+ data points · 100+ interviews",
@@ -49,7 +50,7 @@
   };
 
   const accentVar = {
-    overview: "--ink",
+    overview: "--c-overview",
     product: "--c-product",
     consulting: "--c-consulting",
     data: "--c-data",
@@ -70,8 +71,16 @@
 
   let currentMode = "overview";
 
+  function pulseHub() {
+    hub.classList.remove("is-pulsing");
+    // force reflow so the animation can restart
+    void hub.offsetWidth;
+    hub.classList.add("is-pulsing");
+  }
+
   function applyMode(mode, opts) {
     opts = opts || {};
+    const changed = mode !== currentMode;
     currentMode = mode;
     body.dataset.mode = mode;
 
@@ -85,7 +94,7 @@
     specEls.shipped.textContent = d.shipped;
     specEls.deploy.textContent = d.deploy;
 
-    hubLabel.textContent = mode === "overview" ? "ALL-ROUNDER" : mode.toUpperCase();
+    hubLabel.textContent = mode === "overview" ? "DEFAULT BUILD" : mode.toUpperCase();
 
     stops.forEach((stop) => {
       const active = stop.dataset.mode === mode;
@@ -106,13 +115,15 @@
     });
 
     if (mode === "overview") {
-      needle.style.opacity = "0.15";
+      needle.style.opacity = "0.32";
     } else {
       needle.style.opacity = "1";
       if (!opts.skipAngle) {
         needle.style.setProperty("--angle", ANGLES[mode] + "deg");
       }
     }
+
+    if (changed && !opts.silent) pulseHub();
   }
 
   // --- click on a stop ---
@@ -141,6 +152,9 @@
 
   // --- drag to spin ---
   let dragging = false;
+  let lastAngle = 0;
+  let totalRotation = 0;
+  let eggFired = false;
 
   function angleFromPointer(clientX, clientY) {
     const rect = dial.getBoundingClientRect();
@@ -170,6 +184,9 @@
   function startDrag(e) {
     if (e.target.closest(".dial__stop") || e.target.closest(".dial__hub")) return;
     dragging = true;
+    totalRotation = 0;
+    eggFired = false;
+    lastAngle = angleFromPointer(e.clientX, e.clientY);
     needle.style.transition = "none";
     needle.style.opacity = "1";
     dial.setPointerCapture(e.pointerId);
@@ -179,8 +196,20 @@
     if (!dragging) return;
     const deg = angleFromPointer(e.clientX, e.clientY);
     needle.style.setProperty("--angle", deg + "deg");
+
+    let delta = deg - lastAngle;
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
+    totalRotation += Math.abs(delta);
+    lastAngle = deg;
+
     const guess = nearestMode(deg);
     hubLabel.textContent = guess.toUpperCase();
+
+    if (!eggFired && totalRotation >= 720) {
+      eggFired = true;
+      triggerOverclock();
+    }
   }
 
   function endDrag(e) {
@@ -197,6 +226,52 @@
   dial.addEventListener("pointerup", endDrag);
   dial.addEventListener("pointercancel", endDrag);
 
+  // --- easter egg: overclock ---
+  const EGG_MESSAGES = [
+    "Overclocked. No such configuration exists — but nice reflexes.",
+    "You've unlocked absolutely nothing. Respect, though.",
+    "Warning: spinning does not increase hireability. Still fun.",
+  ];
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("is-visible");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove("is-visible"), 2600);
+  }
+
+  function burstConfetti() {
+    const rect = hub.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const colors = [
+      getComputedStyle(root).getPropertyValue("--c-product").trim(),
+      getComputedStyle(root).getPropertyValue("--c-consulting").trim(),
+      getComputedStyle(root).getPropertyValue("--c-data").trim(),
+      getComputedStyle(root).getPropertyValue("--c-engineering").trim(),
+    ];
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement("span");
+      p.className = "particle";
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 80 + Math.random() * 120;
+      p.style.left = cx + "px";
+      p.style.top = cy + "px";
+      p.style.background = colors[i % colors.length];
+      p.style.setProperty("--tx", Math.cos(angle) * dist + "px");
+      p.style.setProperty("--ty", Math.sin(angle) * dist + "px");
+      p.style.setProperty("--tr", Math.random() * 360 + "deg");
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 950);
+    }
+  }
+
+  function triggerOverclock() {
+    burstConfetti();
+    showToast(EGG_MESSAGES[Math.floor(Math.random() * EGG_MESSAGES.length)]);
+    pulseHub();
+  }
+
   // fill in your real LinkedIn URL here once you have it handy
   const linkedin = document.getElementById("linkedin-link");
   if (linkedin) {
@@ -205,5 +280,5 @@
     });
   }
 
-  applyMode("overview");
+  applyMode("overview", { silent: true });
 })();
