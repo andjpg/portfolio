@@ -189,12 +189,121 @@ button { font-family: inherit; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
   flex-shrink: 0;
 }
 
 @media (min-width: 1101px) {
   .reel-stage { margin-right: -56px; }
+}
+
+.instrument {
+  position: relative;
+  padding: 16px 20px 18px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1) 65%, var(--bg-0));
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.06),
+    0 40px 80px -30px rgba(0, 0, 0, 0.8);
+}
+
+.rivet {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), inset 0 -1px 1px rgba(0, 0, 0, 0.5);
+}
+.rivet--tl { top: 10px; left: 10px; }
+.rivet--tr { top: 10px; right: 10px; }
+.rivet--bl { bottom: 10px; left: 10px; }
+.rivet--br { bottom: 10px; right: 10px; }
+
+.instrument__plate {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 4px 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.instrument__led {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 7px 1px var(--accent);
+  animation: ledBreathe 2.6s ease-in-out infinite;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+@keyframes ledBreathe {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.instrument__title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-soft);
+}
+
+.instrument__body {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rail {
+  width: 14px;
+  height: 174px;
+  flex-shrink: 0;
+  background-image:
+    repeating-linear-gradient(to bottom, var(--glass-border) 0 1px, transparent 1px 14.5px),
+    repeating-linear-gradient(to bottom, color-mix(in srgb, var(--accent) 65%, var(--glass-border)) 0 2px, transparent 2px 58px);
+  background-size: 6px 100%, 14px 100%;
+  background-repeat: no-repeat, no-repeat;
+  background-position: left top, left top;
+  transition: background-image 0.4s ease;
+}
+
+.reel-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.instrument__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.instrument__index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-soft);
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+.instrument__progress {
+  flex: 1;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--glass-border);
+  overflow: hidden;
+}
+.instrument__progress-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 6px 0 var(--accent);
+  transition: width 0.65s cubic-bezier(0.22, 1.4, 0.36, 1), background 0.4s ease;
 }
 
 .reel__nav {

@@ -65,24 +65,51 @@
       </div>
 
       <div class="reel-stage">
-        <button class="reel__nav" id="reel-up" aria-label="Previous configuration">
-          <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 8L7 2L13 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        <div class="instrument">
+          <span class="rivet rivet--tl" aria-hidden="true"></span>
+          <span class="rivet rivet--tr" aria-hidden="true"></span>
+          <span class="rivet rivet--bl" aria-hidden="true"></span>
+          <span class="rivet rivet--br" aria-hidden="true"></span>
 
-        <div class="reel" id="reel" tabindex="0" aria-label="Configuration reel. Drag, scroll, or use arrow keys to select.">
-          <div class="reel__marker" aria-hidden="true"></div>
-          <ul class="reel__track" id="reel-track">
-            <li class="reel__item" data-mode="overview">Default</li>
-            <li class="reel__item" data-mode="product">Product</li>
-            <li class="reel__item" data-mode="consulting">Consulting</li>
-            <li class="reel__item" data-mode="data">Data</li>
-            <li class="reel__item" data-mode="engineering">Engineering</li>
-          </ul>
+          <div class="instrument__plate">
+            <span class="instrument__led" id="led" aria-hidden="true"></span>
+            <span class="instrument__title">Config Selector</span>
+          </div>
+
+          <div class="instrument__body">
+            <div class="rail" aria-hidden="true"></div>
+
+            <div class="reel-col">
+              <button class="reel__nav" id="reel-up" aria-label="Previous configuration">
+                <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 8L7 2L13 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+
+              <div class="reel" id="reel" tabindex="0" aria-label="Configuration reel. Drag, scroll, or use arrow keys to select.">
+                <div class="reel__marker" aria-hidden="true"></div>
+                <ul class="reel__track" id="reel-track">
+                  <li class="reel__item" data-mode="overview">Default</li>
+                  <li class="reel__item" data-mode="product">Product</li>
+                  <li class="reel__item" data-mode="consulting">Consulting</li>
+                  <li class="reel__item" data-mode="data">Data</li>
+                  <li class="reel__item" data-mode="engineering">Engineering</li>
+                </ul>
+              </div>
+
+              <button class="reel__nav" id="reel-down" aria-label="Next configuration">
+                <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+            <div class="rail" aria-hidden="true"></div>
+          </div>
+
+          <div class="instrument__footer">
+            <span class="instrument__index" id="reel-index">01 / 05</span>
+            <div class="instrument__progress">
+              <span class="instrument__progress-fill" id="reel-progress"></span>
+            </div>
+          </div>
         </div>
-
-        <button class="reel__nav" id="reel-down" aria-label="Next configuration">
-          <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
       </div>
 
     </div>

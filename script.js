@@ -6,6 +6,8 @@
   const items = Array.from(track.querySelectorAll(".reel__item"));
   const upBtn = document.getElementById("reel-up");
   const downBtn = document.getElementById("reel-down");
+  const indexEl = document.getElementById("reel-index");
+  const progressEl = document.getElementById("reel-progress");
   const toast = document.getElementById("toast");
 
   const MODES = ["overview", "product", "consulting", "data", "engineering"];
@@ -86,6 +88,8 @@
 
   function updateItemStyles(activeIdx) {
     items.forEach((item, i) => item.classList.toggle("is-center", i === activeIdx));
+    indexEl.textContent = String(activeIdx + 1).padStart(2, "0") + " / 0" + MODES.length;
+    progressEl.style.width = (activeIdx / (MODES.length - 1)) * 100 + "%";
   }
 
   function applyMode(mode, opts) {
