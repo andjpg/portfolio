@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harshdeep Singh — Model 2026</title>
-<meta name="description" content="Harshdeep Singh — one hire, four configurations: Product, Consulting, Data, Engineering.">
+<title>Harshdeep Singh — The Complete Sessions</title>
+<meta name="description" content="Harshdeep Singh — four configurations, one artist: Product, Consulting, Data, Engineering.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,7 @@
 </head>
 <body data-mode="overview">
 
+<div class="grain" aria-hidden="true"></div>
 <div class="bg-ambient" aria-hidden="true">
   <span class="blob blob--a"></span>
   <span class="blob blob--b"></span>
@@ -20,8 +21,8 @@
 
 <nav class="nav">
   <div class="nav__links">
-    <a href="#experience">Experience</a>
-    <a href="#work">Work</a>
+    <a href="#tracklist">Track Listing</a>
+    <a href="#features">Features</a>
     <a href="case-studies.html">Case Studies</a>
     <a href="#contact">Contact</a>
   </div>
@@ -30,162 +31,132 @@
 
 <main>
 
-  <!-- HERO + REEL -->
+  <!-- COVER + CRATE -->
   <section class="hero" id="top">
-    <div class="hero__grid">
-
-      <div class="hero__content">
-        <p class="hero__kicker"><span class="kicker-dot"></span>Harshdeep Singh</p>
-        <h1 class="hero__headline">One hire.<br>Four configurations.</h1>
-
-        <div class="spec-card">
-          <p class="spec__row">
-            <span class="spec__label">Configuration</span>
-            <span class="spec__value" id="spec-config">Default Build</span>
-          </p>
-          <p class="spec__row">
-            <span class="spec__label">Core stack</span>
-            <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
-          </p>
-          <p class="spec__row">
-            <span class="spec__label">Proven at</span>
-            <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
-          </p>
-          <p class="spec__row">
-            <span class="spec__label">Shipped</span>
-            <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
-          </p>
-          <p class="spec__row spec__row--wide">
-            <span class="spec__label">Deploy when</span>
-            <span class="spec__value" id="spec-deploy">You need more than one job filled at once</span>
-          </p>
-        </div>
-
-        <p class="hero__hint">scroll the reel, or click a row</p>
-      </div>
-
-      <div class="reel-stage">
-        <div class="instrument">
-          <span class="rivet rivet--tl" aria-hidden="true"></span>
-          <span class="rivet rivet--tr" aria-hidden="true"></span>
-          <span class="rivet rivet--bl" aria-hidden="true"></span>
-          <span class="rivet rivet--br" aria-hidden="true"></span>
-
-          <div class="instrument__plate">
-            <span class="instrument__led" id="led" aria-hidden="true"></span>
-            <span class="instrument__title">Config Selector</span>
-          </div>
-
-          <div class="instrument__body">
-            <div class="rail" aria-hidden="true"></div>
-
-            <div class="reel-col">
-              <button class="reel__nav" id="reel-up" aria-label="Previous configuration">
-                <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 8L7 2L13 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-
-              <div class="reel" id="reel" tabindex="0" aria-label="Configuration reel. Drag, scroll, or use arrow keys to select.">
-                <div class="reel__marker" aria-hidden="true"></div>
-                <ul class="reel__track" id="reel-track">
-                  <li class="reel__item" data-mode="overview">Default</li>
-                  <li class="reel__item" data-mode="product">Product</li>
-                  <li class="reel__item" data-mode="consulting">Consulting</li>
-                  <li class="reel__item" data-mode="data">Data</li>
-                  <li class="reel__item" data-mode="engineering">Engineering</li>
-                </ul>
-              </div>
-
-              <button class="reel__nav" id="reel-down" aria-label="Next configuration">
-                <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-
-            <div class="rail" aria-hidden="true"></div>
-          </div>
-
-          <div class="instrument__footer">
-            <span class="instrument__index" id="reel-index">01 / 05</span>
-            <div class="instrument__progress">
-              <span class="instrument__progress-fill" id="reel-progress"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    <div class="cover">
+      <p class="hero__kicker"><span class="kicker-dot"></span>Harshdeep Singh</p>
+      <h1 class="hero__headline">The Complete Sessions</h1>
+      <p class="hero__sub">Four configurations. One artist.</p>
     </div>
+
+    <div class="hero__grid">
+      <div class="rig">
+        <div class="crate" id="crate">
+          <div class="sleeve" data-mode="product">
+            <span class="sleeve__label">Product</span>
+          </div>
+          <div class="sleeve" data-mode="consulting">
+            <span class="sleeve__label">Consulting</span>
+          </div>
+          <div class="sleeve" data-mode="data">
+            <span class="sleeve__label">Data</span>
+          </div>
+          <div class="sleeve" data-mode="engineering">
+            <span class="sleeve__label">Engineering</span>
+          </div>
+        </div>
+
+        <div class="player">
+          <div class="platter" id="platter"></div>
+          <div class="platter__label" id="platter-label"><span id="track-name">—</span></div>
+          <div class="needle" id="needle"></div>
+        </div>
+      </div>
+
+      <div class="spec-card" id="liner-notes">
+        <p class="spec__row">
+          <span class="spec__label">Track</span>
+          <span class="spec__value" id="spec-config">Nothing queued</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">BPM</span>
+          <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Label</span>
+          <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Credits</span>
+          <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
+        </p>
+        <p class="spec__row spec__row--wide">
+          <span class="spec__label">Genre</span>
+          <span class="spec__value" id="spec-deploy">Cross-functional — plays well with product, data and eng teams alike</span>
+        </p>
+      </div>
+    </div>
+
+    <p class="hero__hint" id="hint">flip through the crate, pull one out to play it — click it again to eject</p>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section class="section" id="experience">
-    <p class="eyebrow">Experience</p>
+  <!-- TRACK LISTING (Experience) -->
+  <section class="section" id="tracklist">
+    <p class="eyebrow">Track listing</p>
 
-    <div class="timeline">
+    <div class="tracks">
 
-      <article class="tl-item" data-mode="consulting">
-        <div class="tl-item__when">
-          <span class="tl-item__date">Oct 2025 — Present</span>
-          <span class="tl-item__tag" data-tag="consulting">Consulting</span>
-        </div>
-        <div class="tl-item__body">
-          <h3>Associate Consultant · PwC, Mumbai</h3>
+      <article class="track" data-mode="consulting">
+        <div class="track__num">01</div>
+        <div class="track__body">
+          <div class="track__head">
+            <h3>Associate Consultant · PwC, Mumbai</h3>
+            <span class="now-playing"><span class="eq"><i></i><i></i><i></i></span>Now Playing</span>
+          </div>
+          <p class="track__date">Oct 2025 — Present</p>
           <ul>
-            <li>Cleaned material-management master data for a live SAP IBP rollout at a leading agrochemical firm.</li>
-            <li>Built an automated dashboard to flag master-data anomalies and trigger fixes.</li>
+            <li>Untangling a live SAP IBP rollout's master data, one correction at a time, for an agrochemical major.</li>
+            <li>Built the dashboard that catches anomalies before they become someone else's problem.</li>
           </ul>
         </div>
       </article>
 
-      <article class="tl-item" data-mode="product">
-        <div class="tl-item__when">
-          <span class="tl-item__date">Apr 2024 – Jun 2024, Apr 2025 – Aug 2025</span>
-          <span class="tl-item__tag" data-tag="product">Product</span>
-        </div>
-        <div class="tl-item__body">
+      <article class="track" data-mode="product">
+        <div class="track__num">02</div>
+        <div class="track__body">
           <h3>Product Manager, Founder's Office · WizLearnr, Mumbai</h3>
+          <p class="track__date">Apr 2024 – Jun 2024, Apr 2025 – Aug 2025</p>
           <ul>
-            <li>Ran discovery for a Socratic AI copilot — 100+ user interviews, 5 wireframes, MVP roadmap shortlisted by the Telangana Government.</li>
-            <li>Built a RAG evaluation framework to guide conversational-quality improvements.</li>
+            <li>Ran discovery for a Socratic AI copilot — 100+ user interviews, 5 wireframes, a roadmap the Telangana Government shortlisted.</li>
+            <li>Built a RAG evaluation framework so "good answer" stopped being a gut call.</li>
           </ul>
         </div>
       </article>
 
-      <article class="tl-item" data-mode="engineering">
-        <div class="tl-item__when">
-          <span class="tl-item__date">Jan 2022 — Jun 2023</span>
-          <span class="tl-item__tag" data-tag="engineering">Engineering</span>
-        </div>
-        <div class="tl-item__body">
+      <article class="track" data-mode="engineering">
+        <div class="track__num">03</div>
+        <div class="track__body">
           <h3>Software Engineer · Guidewire Software, Bangalore</h3>
+          <p class="track__date">Jan 2022 — Jun 2023</p>
           <ul>
             <li>Shipped 6+ features for the Guidewire Cloud Platform at 80% code coverage.</li>
-            <li>Closed 30+ vulnerabilities and built an auth mechanism for third-party integrations as security champion.</li>
+            <li>Closed 30+ vulnerabilities and built the auth layer for third-party integrations as security champion.</li>
           </ul>
         </div>
       </article>
 
-      <article class="tl-item" data-mode="data">
-        <div class="tl-item__when">
-          <span class="tl-item__date">Oct 2020 — Dec 2021</span>
-          <span class="tl-item__tag" data-tag="data">Data</span>
-        </div>
-        <div class="tl-item__body">
+      <article class="track" data-mode="data">
+        <div class="track__num">04</div>
+        <div class="track__body">
           <h3>Senior Analyst · Capgemini, Remote</h3>
+          <p class="track__date">Oct 2020 — Dec 2021</p>
           <ul>
-            <li>Migrated Teradata to Snowflake — 20M+ data points, 60K+ objects automated, 15 custom Python scripts.</li>
+            <li>Migrated Teradata to Snowflake — 20M+ data points, 60K+ objects automated.</li>
             <li>Cut compute costs 30% and outbound processing from 24h to under 7h. Rising Star of the Month.</li>
           </ul>
         </div>
       </article>
 
-      <article class="tl-item" data-mode="data">
-        <div class="tl-item__when">
-          <span class="tl-item__date">Jan 2020 — May 2020</span>
-          <span class="tl-item__tag" data-tag="data">Data</span>
-        </div>
-        <div class="tl-item__body">
-          <h3>Machine Learning Intern · Samsung R&amp;D Institute</h3>
+      <article class="track track--hidden" data-mode="data">
+        <div class="track__num">—</div>
+        <div class="track__body">
+          <div class="track__head">
+            <h3>Machine Learning Intern · Samsung R&amp;D Institute</h3>
+            <span class="hidden-tag">Hidden Track</span>
+          </div>
+          <p class="track__date">Jan 2020 — May 2020</p>
           <ul>
-            <li>Built an audio-based gallery search feature with MobileNetV2 — 90% training accuracy, 1,500+ audio files across 20 classes.</li>
+            <li>Built an audio-based gallery search with MobileNetV2 — 90% training accuracy across 1,500+ files, 20 classes.</li>
           </ul>
         </div>
       </article>
@@ -198,30 +169,31 @@
     </div>
   </section>
 
-  <!-- WORK / PROJECTS -->
-  <section class="section" id="work">
-    <p class="eyebrow">Selected work</p>
+  <!-- FEATURES (was Selected Work) -->
+  <section class="section" id="features">
+    <p class="eyebrow">Features</p>
+    <p class="section-note">Not full releases — things I contributed to, credited like a feature on someone else's track.</p>
 
     <div class="work-grid">
       <article class="work-card" data-mode="consulting">
         <span class="work-card__tag" data-tag="consulting">Consulting</span>
         <h3>HP Tech Ventures Externship</h3>
-        <p>Sourced startups against HP's investment thesis to support VC due diligence.</p>
+        <p>Featured on: HP's investment due-diligence process, sourcing startups against their thesis.</p>
       </article>
 
       <article class="work-card" data-mode="data">
         <span class="work-card__tag" data-tag="data">Data</span>
         <h3>Consilience.AI — AlphaIQ Beta</h3>
-        <p>Beta-tested an LLM risk-analysis tool for NYSE-listed firms; recommended model and UI fixes.</p>
+        <p>Featured on: AlphaIQ's beta, stress-testing an LLM risk model for NYSE-listed firms.</p>
       </article>
     </div>
 
     <a class="work-cta" href="case-studies.html">Full write-ups (in progress) →</a>
   </section>
 
-  <!-- FULL STACK -->
+  <!-- CREDITS (Full stack) -->
   <section class="section section--tight" id="stack">
-    <p class="eyebrow">Full stack</p>
+    <p class="eyebrow">Credits</p>
     <div class="chip-row" id="chip-row">
       <span class="chip" data-mode="product">Prompt Engineering</span>
       <span class="chip" data-mode="product">Wireframing</span>
@@ -246,9 +218,9 @@
     </div>
   </section>
 
-  <!-- TRACK RECORD -->
+  <!-- NOTABLE MENTIONS -->
   <section class="section section--tight" id="more">
-    <p class="eyebrow">Track record</p>
+    <p class="eyebrow">Notable mentions</p>
     <div class="record">
       <div class="record__group">
         <p class="record__label">Case comps</p>
@@ -281,10 +253,10 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- LABEL INFO (Contact) -->
   <section class="contact" id="contact">
-    <p class="eyebrow eyebrow--light">Contact</p>
-    <h2 class="contact__heading">Let's talk.</h2>
+    <p class="eyebrow eyebrow--light">Label info</p>
+    <h2 class="contact__heading">For bookings, get in touch.</h2>
     <div class="contact__links">
       <a href="mailto:dharsh7777@gmail.com">dharsh7777@gmail.com</a>
       <a href="https://wa.me/917355120100" target="_blank" rel="noopener">WhatsApp</a>
@@ -296,7 +268,7 @@
 
 <footer class="footer">
   <span>Harshdeep Singh</span>
-  <span>Model 2026</span>
+  <span>The Complete Sessions</span>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

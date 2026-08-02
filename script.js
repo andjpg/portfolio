@@ -1,24 +1,25 @@
 (function () {
   const root = document.documentElement;
   const body = document.body;
-  const reel = document.getElementById("reel");
-  const track = document.getElementById("reel-track");
-  const items = Array.from(track.querySelectorAll(".reel__item"));
-  const upBtn = document.getElementById("reel-up");
-  const downBtn = document.getElementById("reel-down");
-  const indexEl = document.getElementById("reel-index");
-  const progressEl = document.getElementById("reel-progress");
+  const crate = document.getElementById("crate");
+  const sleeves = Array.from(crate.querySelectorAll(".sleeve"));
+  const platter = document.getElementById("platter");
+  const platterLabel = document.getElementById("platter-label");
+  const trackName = document.getElementById("track-name");
+  const needle = document.getElementById("needle");
+  const hint = document.getElementById("hint");
   const toast = document.getElementById("toast");
 
-  const MODES = ["overview", "product", "consulting", "data", "engineering"];
+  const MODES = ["product", "consulting", "data", "engineering"];
 
   const specData = {
     overview: {
-      config: "Default Build",
+      config: "Nothing queued",
       stack: "Product · Consulting · Data · Engineering",
       proven: "PwC · WizLearnr · Guidewire · Capgemini · Samsung R&D",
       shipped: "6+ features · 20M+ data points · 100+ interviews",
-      deploy: "You need more than one job filled at once",
+      deploy: "Cross-functional — plays well with product, data and eng teams alike",
+      track: "—",
     },
     product: {
       config: "Product",
@@ -26,6 +27,7 @@
       proven: "WizLearnr, Founder's Office",
       shipped: "MVP roadmap shortlisted by the Telangana Government",
       deploy: "You need 0→1 discovery, fast",
+      track: "PRODUCT",
     },
     consulting: {
       config: "Consulting",
@@ -33,6 +35,7 @@
       proven: "PwC · HP Tech Ventures",
       shipped: "Master-data cleanup for a live SAP IBP rollout",
       deploy: "You need the mess explained to execs",
+      track: "CONSULTING",
     },
     data: {
       config: "Data",
@@ -40,6 +43,7 @@
       proven: "Capgemini · Samsung R&D · Consilience.AI",
       shipped: "20M+ data points migrated, compute cost −30%",
       deploy: "You need a pipeline that doesn't break",
+      track: "DATA",
     },
     engineering: {
       config: "Engineering",
@@ -47,6 +51,7 @@
       proven: "Guidewire Software",
       shipped: "6+ features shipped, 30+ vulnerabilities closed",
       deploy: "You need it shipped and secure",
+      track: "ENGINEERING",
     },
   };
 
@@ -67,50 +72,25 @@
   };
 
   const syncedItems = document.querySelectorAll(
-    "[data-mode].tl-item, [data-mode].work-card, [data-mode].chip"
+    "[data-mode].track, [data-mode].work-card, [data-mode].chip"
   );
 
-  const ITEM_H = items[0].getBoundingClientRect().height || 58;
-  const WINDOW_H = reel.getBoundingClientRect().height || 174;
-  const CENTER_OFFSET = WINDOW_H / 2 - ITEM_H / 2;
+  let picked = null; // currently playing sleeve element, or null
 
-  let index = 0; // matches MODES array
-  let baseY = CENTER_OFFSET; // translateY at rest for index 0
-
-  function yForIndex(i) {
-    return CENTER_OFFSET - i * ITEM_H;
-  }
-
-  function setTrackY(y, animate) {
-    track.style.transition = animate ? "" : "none";
-    track.style.transform = "translateY(" + y + "px)";
-  }
-
-  function updateItemStyles(activeIdx) {
-    items.forEach((item, i) => item.classList.toggle("is-center", i === activeIdx));
-    indexEl.textContent = String(activeIdx + 1).padStart(2, "0") + " / 0" + MODES.length;
-    progressEl.style.width = (activeIdx / (MODES.length - 1)) * 100 + "%";
-  }
-
-  function applyMode(mode, opts) {
-    opts = opts || {};
-    const idx = MODES.indexOf(mode);
-    if (idx === -1) return;
-    index = idx;
-
-    body.dataset.mode = mode;
-    const accent = getComputedStyle(root).getPropertyValue(accentVar[mode]).trim();
-    root.style.setProperty("--accent", accent);
-
+  function setSpec(mode) {
     const d = specData[mode];
     specEls.config.textContent = d.config;
     specEls.stack.textContent = d.stack;
     specEls.proven.textContent = d.proven;
     specEls.shipped.textContent = d.shipped;
     specEls.deploy.textContent = d.deploy;
+    trackName.textContent = d.track;
 
-    updateItemStyles(idx);
+    const accent = getComputedStyle(root).getPropertyValue(accentVar[mode]).trim();
+    root.style.setProperty("--accent", accent);
+  }
 
+  function syncSections(mode) {
     syncedItems.forEach((item) => {
       if (mode === "overview") {
         item.classList.remove("is-active", "is-dim");
@@ -122,104 +102,82 @@
         item.classList.remove("is-active");
       }
     });
-
-    if (!opts.skipMove) setTrackY(yForIndex(idx), true);
   }
 
-  // --- click a row directly ---
-  items.forEach((item, i) => {
-    item.addEventListener("click", () => applyMode(MODES[i]));
+  function play(sleeve) {
+    sleeves.forEach((s) => s.classList.remove("is-picked", "is-near"));
+    sleeve.classList.add("is-picked");
+    picked = sleeve;
+    body.dataset.mode = sleeve.dataset.mode;
+
+    needle.classList.remove("is-down");
+    platter.classList.remove("is-spinning");
+
+    setTimeout(() => {
+      needle.classList.add("is-down");
+      platter.classList.add("is-spinning");
+      setSpec(sleeve.dataset.mode);
+      syncSections(sleeve.dataset.mode);
+      hint.textContent = "click the playing record to eject it";
+    }, 260);
+  }
+
+  function eject() {
+    sleeves.forEach((s) => s.classList.remove("is-picked", "is-near"));
+    picked = null;
+    body.dataset.mode = "overview";
+    needle.classList.remove("is-down");
+    platter.classList.remove("is-spinning");
+    setSpec("overview");
+    syncSections("overview");
+    hint.textContent = "flip through the crate, pull one out to play it — click it again to eject";
+  }
+
+  crate.addEventListener("mousemove", (e) => {
+    sleeves.forEach((s) => {
+      if (s === picked) return;
+      const r = s.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const dist = Math.abs(e.clientX - cx);
+      s.classList.toggle("is-near", dist < 44);
+    });
+  });
+  crate.addEventListener("mouseleave", () => {
+    sleeves.forEach((s) => {
+      if (s !== picked) s.classList.remove("is-near");
+    });
   });
 
-  // --- up / down buttons ---
-  function step(delta) {
-    const next = Math.max(0, Math.min(MODES.length - 1, index + delta));
-    applyMode(MODES[next]);
-  }
-  upBtn.addEventListener("click", () => step(-1));
-  downBtn.addEventListener("click", () => step(1));
-
-  // --- keyboard ---
-  reel.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowUp") { e.preventDefault(); step(-1); }
-    if (e.key === "ArrowDown") { e.preventDefault(); step(1); }
-  });
-
-  // --- drag to scroll ---
-  let dragging = false;
-  let startY = 0;
-  let startTrackY = 0;
-  let totalDrag = 0;
-  let eggFired = false;
-
-  function currentTrackY() {
-    const t = track.style.transform.match(/-?\d+(\.\d+)?/);
-    return t ? parseFloat(t[0]) : yForIndex(index);
-  }
-
-  function startDrag(e) {
-    dragging = true;
-    totalDrag = 0;
-    eggFired = false;
-    startY = e.clientY;
-    startTrackY = currentTrackY();
-    setTrackY(startTrackY, false);
-    reel.setPointerCapture(e.pointerId);
-  }
-
-  function moveDrag(e) {
-    if (!dragging) return;
-    const delta = e.clientY - startY;
-    totalDrag += Math.abs(e.movementY || 0);
-    let y = startTrackY + delta;
-
-    // soft clamp beyond the ends for a physical "stop" feel
-    const minY = yForIndex(MODES.length - 1);
-    const maxY = yForIndex(0);
-    if (y > maxY) y = maxY + (y - maxY) * 0.35;
-    if (y < minY) y = minY + (y - minY) * 0.35;
-
-    setTrackY(y, false);
-
-    const nearestIdx = Math.max(0, Math.min(MODES.length - 1, Math.round((CENTER_OFFSET - y) / ITEM_H)));
-    updateItemStyles(nearestIdx);
-
-    if (!eggFired && totalDrag >= 900) {
-      eggFired = true;
-      triggerOverclock();
+  crate.addEventListener("click", (e) => {
+    const s = e.target.closest(".sleeve");
+    if (!s) return;
+    if (s === picked) {
+      eject();
+    } else {
+      play(s);
     }
-  }
+  });
 
-  function endDrag(e) {
-    if (!dragging) return;
-    dragging = false;
-    const y = currentTrackY();
-    const nearestIdx = Math.max(0, Math.min(MODES.length - 1, Math.round((CENTER_OFFSET - y) / ITEM_H)));
-    applyMode(MODES[nearestIdx]);
-  }
+  // keyboard: focus a sleeve and press Enter/Space to toggle
+  sleeves.forEach((s) => {
+    s.setAttribute("tabindex", "0");
+    s.setAttribute("role", "button");
+    s.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (s === picked) eject();
+        else play(s);
+      }
+    });
+  });
 
-  reel.addEventListener("pointerdown", startDrag);
-  reel.addEventListener("pointermove", moveDrag);
-  reel.addEventListener("pointerup", endDrag);
-  reel.addEventListener("pointercancel", endDrag);
-
-  // --- mouse wheel over the reel also scrolls it ---
-  reel.addEventListener(
-    "wheel",
-    (e) => {
-      e.preventDefault();
-      if (e.deltaY > 0) step(1);
-      else if (e.deltaY < 0) step(-1);
-    },
-    { passive: false }
-  );
-
-  // --- easter egg: overclock ---
+  // --- easter egg: scratch (rapid re-picking) ---
   const EGG_MESSAGES = [
-    "Overclocked. No such configuration exists — but nice reflexes.",
-    "You've unlocked absolutely nothing. Respect, though.",
-    "Warning: spinning does not increase hireability. Still fun.",
+    "That's a scratch, not a career pivot. Nice reflexes though.",
+    "DJ mode unlocked. No such configuration exists — but respect.",
+    "You've scratched a résumé. Bold, but the pressing survives.",
   ];
+  let recentPicks = [];
 
   function showToast(msg) {
     toast.textContent = msg;
@@ -228,8 +186,8 @@
     showToast._t = setTimeout(() => toast.classList.remove("is-visible"), 2600);
   }
 
-  function burstConfetti() {
-    const rect = reel.getBoundingClientRect();
+  function burstConfetti(el) {
+    const rect = el.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const colors = [
@@ -238,11 +196,11 @@
       getComputedStyle(root).getPropertyValue("--c-data").trim(),
       getComputedStyle(root).getPropertyValue("--c-engineering").trim(),
     ];
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 16; i++) {
       const p = document.createElement("span");
       p.className = "particle";
       const angle = Math.random() * Math.PI * 2;
-      const dist = 70 + Math.random() * 110;
+      const dist = 60 + Math.random() * 100;
       p.style.left = cx + "px";
       p.style.top = cy + "px";
       p.style.background = colors[i % colors.length];
@@ -254,12 +212,19 @@
     }
   }
 
-  function triggerOverclock() {
-    burstConfetti();
-    showToast(EGG_MESSAGES[Math.floor(Math.random() * EGG_MESSAGES.length)]);
-  }
+  crate.addEventListener("click", (e) => {
+    const s = e.target.closest(".sleeve");
+    if (!s) return;
+    const now = Date.now();
+    recentPicks.push(now);
+    recentPicks = recentPicks.filter((t) => now - t < 2500);
+    if (recentPicks.length >= 5) {
+      recentPicks = [];
+      burstConfetti(platter);
+      showToast(EGG_MESSAGES[Math.floor(Math.random() * EGG_MESSAGES.length)]);
+    }
+  });
 
-  // fill in your real LinkedIn URL here once you have it handy
   const linkedin = document.getElementById("linkedin-link");
   if (linkedin) {
     linkedin.addEventListener("click", (e) => {
@@ -267,6 +232,5 @@
     });
   }
 
-  setTrackY(yForIndex(0), false);
-  applyMode("overview", { skipMove: true });
+  setSpec("overview");
 })();
