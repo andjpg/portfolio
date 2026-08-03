@@ -18,6 +18,7 @@
   --c-consulting: #3f8fd1;
   --c-data: #3fae7a;
   --c-engineering: #9a6fd1;
+  --neon: #ff3f6b;
 
   --font-display: "Fraunces", serif;
   --font-body: "Inter", -apple-system, sans-serif;
@@ -25,6 +26,11 @@
 
   --wrap: 880px;
 }
+
+/* Per-page lighting mood — same family, different feel */
+body[data-page="sign"] { --bg-0: #0a0806; --bg-1: #14100b; --bg-2: #1c1610; }
+body[data-page="wall"] { --bg-0: #100c0a; --bg-1: #1c1512; --bg-2: #26190f; --text-soft: #9c9184; }
+body[data-page="counter"] { --bg-0: #110b08; --bg-1: #1a120c; --bg-2: #221609; }
 
 * { box-sizing: border-box; }
 
@@ -600,3 +606,143 @@ button { font-family: inherit; }
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .page-cta:hover { background: var(--text); color: var(--bg-0); }
+
+/* ---------- Continue CTA (shared) ---------- */
+.continue { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 60px 32px 90px; text-align: center; }
+.continue__link {
+  font-family: var(--font-mono); font-size: 13px; text-decoration: none; color: var(--text);
+  border: 1px solid var(--glass-border); background: var(--glass-fill); padding: 12px 24px; border-radius: 999px;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.continue__link:hover { background: var(--accent); color: var(--bg-0); border-color: var(--accent); transform: translateY(-1px); }
+.continue__hint { font-family: var(--font-mono); font-size: 11px; color: var(--text-soft); opacity: 0.6; }
+
+/* ========================================================= */
+/* Page: Sign (index.html)                                    */
+/* ========================================================= */
+.shopfront { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; padding: 40px 24px; text-align: center; }
+
+.neon {
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 6vw, 48px);
+  color: var(--neon); text-shadow: 0 0 6px var(--neon), 0 0 18px var(--neon), 0 0 40px color-mix(in srgb, var(--neon) 60%, transparent);
+  animation: neonFlicker 4s ease-in-out infinite;
+}
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 100% { opacity: 1; }
+  20%, 22% { opacity: 0.4; }
+}
+
+.window {
+  position: relative; width: min(560px, 86vw); height: 260px; border-radius: 8px;
+  background: linear-gradient(155deg, var(--bg-2), var(--bg-0));
+  border: 10px solid #2a1d13; box-shadow: inset 0 0 40px rgba(0,0,0,.7), 0 40px 80px -30px rgba(0,0,0,.8);
+  overflow: hidden;
+}
+.window::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 40%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%);
+  filter: blur(20px);
+}
+.window__hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); opacity: 0.4; }
+
+.sign {
+  font-family: 'Caveat', 'Fraunces', cursive, serif; font-size: 24px; background: #2a1d13; color: var(--text);
+  border: 3px solid #4a3624; padding: 14px 26px; border-radius: 4px; transform: rotate(-1.2deg);
+  box-shadow: 0 10px 24px -10px rgba(0,0,0,.6);
+}
+.sign small { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-soft); margin-top: 6px; }
+
+.door-btn {
+  font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text); background: var(--glass-fill); border: 1px solid var(--glass-border);
+  padding: 14px 30px; border-radius: 999px; cursor: pointer; transition: background 0.25s ease, transform 0.15s ease, border-color 0.25s ease;
+}
+.door-btn:hover { background: var(--accent); color: var(--bg-0); border-color: var(--accent); transform: translateY(-1px); }
+
+.shopfront.is-leaving { animation: doorSwing 0.5s ease forwards; }
+@keyframes doorSwing { to { opacity: 0; transform: scale(0.97); } }
+
+/* ========================================================= */
+/* Page: Wall (wall.html)                                     */
+/* ========================================================= */
+.wall-page { max-width: var(--wrap); margin: 0 auto; padding: 80px 32px 40px; }
+.wall-row { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; margin-bottom: 64px; }
+
+.framed, .plaque { width: 240px; padding: 20px; border-radius: 6px; text-align: center; position: relative; }
+.framed {
+  background: linear-gradient(155deg, #2a2018, #1a130d); border: 6px solid #5a4326;
+  box-shadow: 0 16px 30px -14px rgba(0,0,0,.7), inset 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.framed h4 { font-family: var(--font-display); font-size: 16px; color: var(--accent); margin: 6px 0 8px; }
+.framed p { font-size: 12.5px; color: var(--text-soft); margin: 0; line-height: 1.4; }
+.stamp {
+  position: absolute; top: 10px; right: 10px; border: 2px solid var(--c-product); color: var(--c-product);
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 0.06em; padding: 2px 6px;
+  border-radius: 3px; transform: rotate(8deg); opacity: 0.85;
+}
+
+.plaque { background: linear-gradient(155deg, #3a2a1a, #241a10); border: 3px solid #8a6a3a; box-shadow: 0 14px 26px -14px rgba(0,0,0,.7); }
+.plaque__ribbon {
+  width: 36px; height: 36px; margin: 0 auto 8px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f2c14e, #a4780e);
+  display: flex; align-items: center; justify-content: center; font-size: 17px; box-shadow: 0 3px 8px rgba(0,0,0,.5);
+}
+.plaque h4 { font-family: var(--font-display); font-size: 15px; color: var(--text); margin: 0 0 8px; }
+.plaque p { font-size: 12.5px; color: var(--text-soft); margin: 0; line-height: 1.4; }
+
+.board {
+  background: #3a2c1f; border: 10px solid #241a12; border-radius: 6px; padding: 32px;
+  display: flex; gap: 26px; flex-wrap: wrap; justify-content: center;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,.4), 0 20px 40px -20px rgba(0,0,0,.7);
+  margin-bottom: 48px;
+}
+.flyer { position: relative; width: 160px; height: 140px; cursor: pointer; }
+.flyer__back, .flyer__front { position: absolute; inset: 0; border-radius: 2px; padding: 14px; box-sizing: border-box; }
+.flyer__back { background: #f2e9da; color: #241a12; transform: rotate(1.5deg); box-shadow: 0 6px 14px rgba(0,0,0,.4); }
+.flyer__back p { font-family: var(--font-body); font-size: 12px; line-height: 1.4; margin: 0; }
+.flyer__front {
+  background: #e7dcc8; color: #241a12; transform: rotate(-2deg); box-shadow: 0 8px 16px rgba(0,0,0,.45);
+  transition: transform 0.4s cubic-bezier(.34,1.5,.5,1); display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.flyer__front h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; margin: 0; }
+.flyer.is-peeled .flyer__front { transform: rotate(-18deg) translate(-32px, -28px); }
+.flyer__pin {
+  position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--c-product), #8a2e18); z-index: 3; box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+.board__hint { text-align: center; font-family: var(--font-mono); font-size: 11.5px; color: var(--text-soft); opacity: 0.65; margin: -28px 0 48px; }
+
+/* small pinned badges for case comps / certs, cheaper than a full flyer */
+.pin-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.pin-badge {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-soft); background: var(--glass-fill);
+  border: 1px dashed var(--glass-border); padding: 6px 12px; border-radius: 4px; transform: rotate(var(--r, 0deg));
+}
+.pin-badge:nth-child(3n) { --r: -1.5deg; } .pin-badge:nth-child(3n+1) { --r: 1deg; }
+
+/* ========================================================= */
+/* Page: Counter (counter.html)                               */
+/* ========================================================= */
+.counter-page { max-width: var(--wrap); margin: 0 auto; padding: 80px 32px 40px; text-align: center; }
+
+.card-holder {
+  width: min(320px, 80vw); margin: 40px auto; padding: 28px 24px 20px; border-radius: 10px;
+  background: linear-gradient(155deg, #241a12, #17110b); border: 1px solid var(--glass-border);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.5), 0 24px 50px -24px rgba(0,0,0,.7);
+}
+.business-card {
+  background: var(--text); color: var(--bg-0); border-radius: 6px; padding: 18px 20px; text-align: left;
+  box-shadow: 0 10px 20px -8px rgba(0,0,0,.5); font-family: var(--font-body);
+}
+.business-card h4 { font-family: var(--font-display); font-size: 17px; margin: 0 0 4px; }
+.business-card p { font-family: var(--font-mono); font-size: 11.5px; margin: 2px 0; opacity: 0.75; }
+.business-card a { text-decoration: none; color: inherit; border-bottom: 1px solid currentColor; }
+.card-holder__label { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 14px; }
+
+.staff-picks { margin-top: 56px; text-align: left; max-width: 520px; margin-left: auto; margin-right: auto; }
+.staff-picks__board {
+  background: #241a12; border: 8px solid #17110b; border-radius: 6px; padding: 20px 24px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,.5);
+}
+.staff-picks__title { font-family: 'Caveat', cursive; font-size: 22px; color: var(--accent); margin: 0 0 10px; text-align: center; }

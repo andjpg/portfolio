@@ -3,276 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harshdeep Singh — The Complete Sessions</title>
-<meta name="description" content="Harshdeep Singh — four configurations, one artist: Product, Consulting, Data, Engineering.">
+<title>Harshdeep's — Record Shop</title>
+<meta name="description" content="Harshdeep Singh's record shop — step in.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body data-mode="overview">
+<body data-mode="overview" data-page="sign">
 
 <div class="grain" aria-hidden="true"></div>
-<div class="bg-ambient" aria-hidden="true">
-  <span class="blob blob--a"></span>
-  <span class="blob blob--b"></span>
-</div>
 
 <nav class="nav">
-  <div class="nav__links">
-    <a href="#tracklist">Track Listing</a>
-    <a href="#features">Features</a>
-    <a href="case-studies.html">Case Studies</a>
-    <a href="#contact">Contact</a>
-  </div>
+  <div class="nav__links"></div>
   <a class="nav__resume" href="https://drive.google.com/file/d/1-5M2BheT80IlMUJ9oXyYekqQb4ygV8jG/view?usp=sharing" target="_blank" rel="noopener">Résumé ↓</a>
 </nav>
 
 <main>
+  <div class="shopfront" id="shopfront">
 
-  <!-- COVER + CRATE -->
-  <section class="hero" id="top">
-    <div class="cover">
-      <p class="hero__kicker"><span class="kicker-dot"></span>Harshdeep Singh</p>
-      <h1 class="hero__headline">The Complete Sessions</h1>
-      <p class="hero__sub">Four configurations. One artist.</p>
+    <p class="neon">OPEN</p>
+
+    <div class="window">
+      <div class="window__hint">the lights are on inside</div>
     </div>
 
-    <div class="hero__grid">
-      <div class="rig">
-        <div class="crate" id="crate">
-          <div class="sleeve" data-mode="product">
-            <span class="sleeve__label">Product</span>
-          </div>
-          <div class="sleeve" data-mode="consulting">
-            <span class="sleeve__label">Consulting</span>
-          </div>
-          <div class="sleeve" data-mode="data">
-            <span class="sleeve__label">Data</span>
-          </div>
-          <div class="sleeve" data-mode="engineering">
-            <span class="sleeve__label">Engineering</span>
-          </div>
-        </div>
-
-        <div class="player">
-          <div class="platter" id="platter"></div>
-          <div class="platter__label" id="platter-label"><span id="track-name">—</span></div>
-          <div class="needle" id="needle"></div>
-        </div>
-      </div>
-
-      <div class="spec-card" id="liner-notes">
-        <p class="spec__row">
-          <span class="spec__label">Track</span>
-          <span class="spec__value" id="spec-config">Nothing queued</span>
-        </p>
-        <p class="spec__row">
-          <span class="spec__label">BPM</span>
-          <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
-        </p>
-        <p class="spec__row">
-          <span class="spec__label">Label</span>
-          <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
-        </p>
-        <p class="spec__row">
-          <span class="spec__label">Credits</span>
-          <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
-        </p>
-        <p class="spec__row spec__row--wide">
-          <span class="spec__label">Genre</span>
-          <span class="spec__value" id="spec-deploy">Cross-functional — plays well with product, data and eng teams alike</span>
-        </p>
-      </div>
+    <div class="sign">
+      Harshdeep's — Record Shop<br>
+      <small>currently playing: Associate Consultant, PwC</small>
     </div>
 
-    <p class="hero__hint" id="hint">flip through the crate, pull one out to play it — click it again to eject</p>
-  </section>
+    <button class="door-btn" id="door">Come in →</button>
 
-  <!-- TRACK LISTING (Experience) -->
-  <section class="section" id="tracklist">
-    <p class="eyebrow">Track listing</p>
-
-    <div class="tracks">
-
-      <article class="track" data-mode="consulting">
-        <div class="track__num">01</div>
-        <div class="track__body">
-          <div class="track__head">
-            <h3>Associate Consultant · PwC, Mumbai</h3>
-            <span class="now-playing"><span class="eq"><i></i><i></i><i></i></span>Now Playing</span>
-          </div>
-          <p class="track__date">Oct 2025 — Present</p>
-          <ul>
-            <li>Untangling a live SAP IBP rollout's master data, one correction at a time, for an agrochemical major.</li>
-            <li>Built the dashboard that catches anomalies before they become someone else's problem.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="track" data-mode="product">
-        <div class="track__num">02</div>
-        <div class="track__body">
-          <h3>Product Manager, Founder's Office · WizLearnr, Mumbai</h3>
-          <p class="track__date">Apr 2024 – Jun 2024, Apr 2025 – Aug 2025</p>
-          <ul>
-            <li>Ran discovery for a Socratic AI copilot — 100+ user interviews, 5 wireframes, a roadmap the Telangana Government shortlisted.</li>
-            <li>Built a RAG evaluation framework so "good answer" stopped being a gut call.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="track" data-mode="engineering">
-        <div class="track__num">03</div>
-        <div class="track__body">
-          <h3>Software Engineer · Guidewire Software, Bangalore</h3>
-          <p class="track__date">Jan 2022 — Jun 2023</p>
-          <ul>
-            <li>Shipped 6+ features for the Guidewire Cloud Platform at 80% code coverage.</li>
-            <li>Closed 30+ vulnerabilities and built the auth layer for third-party integrations as security champion.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="track" data-mode="data">
-        <div class="track__num">04</div>
-        <div class="track__body">
-          <h3>Senior Analyst · Capgemini, Remote</h3>
-          <p class="track__date">Oct 2020 — Dec 2021</p>
-          <ul>
-            <li>Migrated Teradata to Snowflake — 20M+ data points, 60K+ objects automated.</li>
-            <li>Cut compute costs 30% and outbound processing from 24h to under 7h. Rising Star of the Month.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="track track--hidden" data-mode="data">
-        <div class="track__num">—</div>
-        <div class="track__body">
-          <div class="track__head">
-            <h3>Machine Learning Intern · Samsung R&amp;D Institute</h3>
-            <span class="hidden-tag">Hidden Track</span>
-          </div>
-          <p class="track__date">Jan 2020 — May 2020</p>
-          <ul>
-            <li>Built an audio-based gallery search with MobileNetV2 — 90% training accuracy across 1,500+ files, 20 classes.</li>
-          </ul>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="edu-strip">
-      <p><span>BITSoM, BITS Pilani</span><span>MBA</span><span>2023–2025</span><span>GPA 3.3/4</span></p>
-      <p><span>Thapar Institute of Engineering &amp; Technology</span><span>B.E., Electronics &amp; Computers</span><span>2016–2020</span><span>CGPA 8.46/10</span></p>
-    </div>
-  </section>
-
-  <!-- FEATURES (was Selected Work) -->
-  <section class="section" id="features">
-    <p class="eyebrow">Features</p>
-    <p class="section-note">Not full releases — things I contributed to, credited like a feature on someone else's track.</p>
-
-    <div class="work-grid">
-      <article class="work-card" data-mode="consulting">
-        <span class="work-card__tag" data-tag="consulting">Consulting</span>
-        <h3>HP Tech Ventures Externship</h3>
-        <p>Featured on: HP's investment due-diligence process, sourcing startups against their thesis.</p>
-      </article>
-
-      <article class="work-card" data-mode="data">
-        <span class="work-card__tag" data-tag="data">Data</span>
-        <h3>Consilience.AI — AlphaIQ Beta</h3>
-        <p>Featured on: AlphaIQ's beta, stress-testing an LLM risk model for NYSE-listed firms.</p>
-      </article>
-    </div>
-
-    <a class="work-cta" href="case-studies.html">Full write-ups (in progress) →</a>
-  </section>
-
-  <!-- CREDITS (Full stack) -->
-  <section class="section section--tight" id="stack">
-    <p class="eyebrow">Credits</p>
-    <div class="chip-row" id="chip-row">
-      <span class="chip" data-mode="product">Prompt Engineering</span>
-      <span class="chip" data-mode="product">Wireframing</span>
-      <span class="chip" data-mode="product">Market Research</span>
-      <span class="chip" data-mode="product">Product Benchmarking</span>
-      <span class="chip" data-mode="product">No-Code Tools</span>
-      <span class="chip" data-mode="consulting">Strategy</span>
-      <span class="chip" data-mode="consulting">Financial Modeling</span>
-      <span class="chip" data-mode="consulting">Sensitivity Analysis</span>
-      <span class="chip" data-mode="consulting">SAP IBP</span>
-      <span class="chip" data-mode="consulting">Stakeholder Management</span>
-      <span class="chip" data-mode="data">Snowflake</span>
-      <span class="chip" data-mode="data">Python</span>
-      <span class="chip" data-mode="data">Tableau</span>
-      <span class="chip" data-mode="data">Machine Learning</span>
-      <span class="chip" data-mode="data">Deep Learning</span>
-      <span class="chip" data-mode="engineering">Java</span>
-      <span class="chip" data-mode="engineering">AWS</span>
-      <span class="chip" data-mode="engineering">Security &amp; Auth</span>
-      <span class="chip" data-mode="engineering">Gen AI</span>
-      <span class="chip" data-mode="engineering">Cloud Platforms</span>
-    </div>
-  </section>
-
-  <!-- NOTABLE MENTIONS -->
-  <section class="section section--tight" id="more">
-    <p class="eyebrow">Notable mentions</p>
-    <div class="record">
-      <div class="record__group">
-        <p class="record__label">Case comps</p>
-        <div class="chip-row chip-row--flat">
-          <span class="chip chip--flat">Product Folks Teardown '25</span>
-          <span class="chip chip--flat">MDI Gurgaon PM Case '24</span>
-          <span class="chip chip--flat">PM School Teardown '23</span>
-          <span class="chip chip--flat">SIBM Pune PM Case '23</span>
-        </div>
-      </div>
-      <div class="record__group">
-        <p class="record__label">Certifications</p>
-        <div class="chip-row chip-row--flat">
-          <span class="chip chip--flat">Product Analytics</span>
-          <span class="chip chip--flat">Prompt Engineering for Everyone</span>
-          <span class="chip chip--flat">30 Days of Google Cloud</span>
-          <span class="chip chip--flat">Python for Developers</span>
-          <span class="chip chip--flat">AI Micro-Certification</span>
-          <span class="chip chip--flat">Google Project Management</span>
-        </div>
-      </div>
-      <div class="record__group">
-        <p class="record__label">Olympiads</p>
-        <div class="chip-row chip-row--flat">
-          <span class="chip chip--flat">SOF NSO '13</span>
-          <span class="chip chip--flat">SOF IMO '14</span>
-          <span class="chip chip--flat">SOF NCO '15</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LABEL INFO (Contact) -->
-  <section class="contact" id="contact">
-    <p class="eyebrow eyebrow--light">Label info</p>
-    <h2 class="contact__heading">For bookings, get in touch.</h2>
-    <div class="contact__links">
-      <a href="mailto:dharsh7777@gmail.com">dharsh7777@gmail.com</a>
-      <a href="https://wa.me/917355120100" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="#" target="_blank" rel="noopener" id="linkedin-link">LinkedIn</a>
-    </div>
-  </section>
-
+  </div>
 </main>
 
-<footer class="footer">
-  <span>Harshdeep Singh</span>
-  <span>The Complete Sessions</span>
-</footer>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="script.js"></script>
+<script>
+  document.getElementById('door').addEventListener('click', function () {
+    const scene = document.getElementById('shopfront');
+    scene.classList.add('is-leaving');
+    setTimeout(function () { window.location.href = 'floor.html'; }, 450);
+  });
+</script>
 </body>
 </html>

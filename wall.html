@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshdeep's — The Wall</title>
+<meta name="description" content="Harshdeep Singh's record shop — the wall.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-mode="overview" data-page="wall">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="bg-ambient" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+
+<nav class="nav">
+  <div class="nav__links"></div>
+  <a class="nav__resume" href="https://drive.google.com/file/d/1-5M2BheT80IlMUJ9oXyYekqQb4ygV8jG/view?usp=sharing" target="_blank" rel="noopener">Résumé ↓</a>
+</nav>
+
+<main>
+  <div class="wall-page">
+
+    <p class="eyebrow" style="text-align:center">The wall</p>
+
+    <!-- Framed achievement + plaque -->
+    <div class="wall-row">
+      <div class="framed">
+        <div class="stamp">RARE</div>
+        <h4>Shortlisted</h4>
+        <p>An MVP roadmap for a multilingual AI assistant, picked by the Telangana Government — one of the pressings that actually mattered.</p>
+      </div>
+      <div class="plaque">
+        <div class="plaque__ribbon">★</div>
+        <h4>Employee of the Month</h4>
+        <p>Rising Star of the Month — Capgemini, for an outbound system nobody else wanted to touch.</p>
+      </div>
+    </div>
+
+    <!-- Corkboard flyers -->
+    <div class="board">
+      <div class="flyer" data-f="1">
+        <div class="flyer__pin"></div>
+        <div class="flyer__back"><p>Sourced startups against HP's investment thesis to support VC due diligence.</p></div>
+        <div class="flyer__front"><h4>Featured on:<br>HP Tech Ventures</h4></div>
+      </div>
+      <div class="flyer" data-f="2">
+        <div class="flyer__pin"></div>
+        <div class="flyer__back"><p>Beta-tested an LLM risk model for NYSE-listed firms; shaped the fixes that shipped.</p></div>
+        <div class="flyer__front"><h4>Featured on:<br>Consilience.AI</h4></div>
+      </div>
+    </div>
+    <p class="board__hint">peel a flyer to see what's underneath</p>
+
+    <!-- Pinned smaller badges -->
+    <p class="eyebrow" style="text-align:center">Also pinned up</p>
+    <div class="pin-row" style="margin-bottom:16px">
+      <span class="pin-badge">Product Folks Teardown '25</span>
+      <span class="pin-badge">MDI Gurgaon PM Case '24</span>
+      <span class="pin-badge">PM School Teardown '23</span>
+      <span class="pin-badge">SIBM Pune PM Case '23</span>
+    </div>
+    <div class="pin-row" style="margin-bottom:16px">
+      <span class="pin-badge">Product Analytics Cert</span>
+      <span class="pin-badge">Prompt Engineering for Everyone</span>
+      <span class="pin-badge">30 Days of Google Cloud</span>
+      <span class="pin-badge">Python for Developers</span>
+      <span class="pin-badge">AI Micro-Certification</span>
+      <span class="pin-badge">Google Project Management</span>
+    </div>
+    <div class="pin-row">
+      <span class="pin-badge">SOF NSO '13</span>
+      <span class="pin-badge">SOF IMO '14</span>
+      <span class="pin-badge">SOF NCO '15</span>
+    </div>
+
+    <div class="continue">
+      <a class="continue__link" href="counter.html">Head to the counter →</a>
+      <p class="continue__hint">that's everything on the wall</p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <span>Harshdeep Singh</span>
+  <span>The Complete Sessions</span>
+</footer>
+
+<script>
+  document.querySelectorAll('.flyer').forEach(function (f) {
+    f.addEventListener('click', function () { f.classList.toggle('is-peeled'); });
+  });
+</script>
+</body>
+</html>

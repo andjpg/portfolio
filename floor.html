@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshdeep's — The Floor</title>
+<meta name="description" content="Harshdeep Singh — four configurations, one artist: Product, Consulting, Data, Engineering.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-mode="overview" data-page="floor">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="bg-ambient" aria-hidden="true">
+  <span class="blob blob--a"></span>
+  <span class="blob blob--b"></span>
+</div>
+
+<nav class="nav">
+  <div class="nav__links"></div>
+  <a class="nav__resume" href="https://drive.google.com/file/d/1-5M2BheT80IlMUJ9oXyYekqQb4ygV8jG/view?usp=sharing" target="_blank" rel="noopener">Résumé ↓</a>
+</nav>
+
+<main>
+
+  <!-- COVER + CRATE -->
+  <section class="hero" id="top">
+    <div class="cover">
+      <p class="hero__kicker"><span class="kicker-dot"></span>Harshdeep Singh</p>
+      <h1 class="hero__headline">The Complete Sessions</h1>
+      <p class="hero__sub">Four configurations. One artist.</p>
+    </div>
+
+    <div class="hero__grid">
+      <div class="rig">
+        <div class="crate" id="crate">
+          <div class="sleeve" data-mode="product">
+            <span class="sleeve__label">Product</span>
+          </div>
+          <div class="sleeve" data-mode="consulting">
+            <span class="sleeve__label">Consulting</span>
+          </div>
+          <div class="sleeve" data-mode="data">
+            <span class="sleeve__label">Data</span>
+          </div>
+          <div class="sleeve" data-mode="engineering">
+            <span class="sleeve__label">Engineering</span>
+          </div>
+        </div>
+
+        <div class="player">
+          <div class="platter" id="platter"></div>
+          <div class="platter__label" id="platter-label"><span id="track-name">—</span></div>
+          <div class="needle" id="needle"></div>
+        </div>
+      </div>
+
+      <div class="spec-card" id="liner-notes">
+        <p class="spec__row">
+          <span class="spec__label">Track</span>
+          <span class="spec__value" id="spec-config">Nothing queued</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">BPM</span>
+          <span class="spec__value" id="spec-stack">Product · Consulting · Data · Engineering</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Label</span>
+          <span class="spec__value" id="spec-proven">PwC · WizLearnr · Guidewire · Capgemini · Samsung R&amp;D</span>
+        </p>
+        <p class="spec__row">
+          <span class="spec__label">Credits</span>
+          <span class="spec__value" id="spec-shipped">6+ features · 20M+ data points · 100+ interviews</span>
+        </p>
+        <p class="spec__row spec__row--wide">
+          <span class="spec__label">Genre</span>
+          <span class="spec__value" id="spec-deploy">Cross-functional — plays well with product, data and eng teams alike</span>
+        </p>
+      </div>
+    </div>
+
+    <p class="hero__hint" id="hint">flip through the crate, pull one out to play it — click it again to eject</p>
+  </section>
+
+  <!-- TRACK LISTING (Experience) -->
+  <section class="section" id="tracklist">
+    <p class="eyebrow">Track listing</p>
+
+    <div class="tracks">
+
+      <article class="track" data-mode="consulting">
+        <div class="track__num">01</div>
+        <div class="track__body">
+          <div class="track__head">
+            <h3>Associate Consultant · PwC, Mumbai</h3>
+            <span class="now-playing"><span class="eq"><i></i><i></i><i></i></span>Now Playing</span>
+          </div>
+          <p class="track__date">Oct 2025 — Present</p>
+          <ul>
+            <li>Untangling a live SAP IBP rollout's master data, one correction at a time, for an agrochemical major.</li>
+            <li>Built the dashboard that catches anomalies before they become someone else's problem.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="track" data-mode="product">
+        <div class="track__num">02</div>
+        <div class="track__body">
+          <h3>Product Manager, Founder's Office · WizLearnr, Mumbai</h3>
+          <p class="track__date">Apr 2024 – Jun 2024, Apr 2025 – Aug 2025</p>
+          <ul>
+            <li>Ran discovery for a Socratic AI copilot — 100+ user interviews, 5 wireframes, a roadmap the Telangana Government shortlisted.</li>
+            <li>Built a RAG evaluation framework so "good answer" stopped being a gut call.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="track" data-mode="engineering">
+        <div class="track__num">03</div>
+        <div class="track__body">
+          <h3>Software Engineer · Guidewire Software, Bangalore</h3>
+          <p class="track__date">Jan 2022 — Jun 2023</p>
+          <ul>
+            <li>Shipped 6+ features for the Guidewire Cloud Platform at 80% code coverage.</li>
+            <li>Closed 30+ vulnerabilities and built the auth layer for third-party integrations as security champion.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="track" data-mode="data">
+        <div class="track__num">04</div>
+        <div class="track__body">
+          <h3>Senior Analyst · Capgemini, Remote</h3>
+          <p class="track__date">Oct 2020 — Dec 2021</p>
+          <ul>
+            <li>Migrated Teradata to Snowflake — 20M+ data points, 60K+ objects automated.</li>
+            <li>Cut compute costs 30% and outbound processing from 24h to under 7h. Rising Star of the Month.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="track track--hidden" data-mode="data">
+        <div class="track__num">—</div>
+        <div class="track__body">
+          <div class="track__head">
+            <h3>Machine Learning Intern · Samsung R&amp;D Institute</h3>
+            <span class="hidden-tag">Hidden Track</span>
+          </div>
+          <p class="track__date">Jan 2020 — May 2020</p>
+          <ul>
+            <li>Built an audio-based gallery search with MobileNetV2 — 90% training accuracy across 1,500+ files, 20 classes.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="edu-strip">
+      <p><span>BITSoM, BITS Pilani</span><span>MBA</span><span>2023–2025</span><span>GPA 3.3/4</span></p>
+      <p><span>Thapar Institute of Engineering &amp; Technology</span><span>B.E., Electronics &amp; Computers</span><span>2016–2020</span><span>CGPA 8.46/10</span></p>
+    </div>
+  </section>
+
+  <div class="continue">
+    <a class="continue__link" href="wall.html">Keep looking around →</a>
+    <p class="continue__hint">there's more on the wall</p>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <span>Harshdeep Singh</span>
+  <span>The Complete Sessions</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
