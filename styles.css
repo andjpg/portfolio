@@ -169,6 +169,16 @@ button { font-family: inherit; }
   gap: 14px 28px;
   box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7);
 }
+.spec-card__eyebrow {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-soft);
+  opacity: 0.7;
+  margin: 0 0 4px;
+}
 .spec__row--wide { grid-column: 1 / -1; }
 .spec__row {
   display: flex;
@@ -645,6 +655,23 @@ button { font-family: inherit; }
 }
 .window__hint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); opacity: 0.4; }
+
+.library-bg {
+  position: fixed; inset: 0; z-index: -1;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 132px, rgba(0,0,0,.55) 132px 140px),
+    repeating-linear-gradient(90deg,
+      hsl(24 28% 16%) 0px, hsl(24 28% 16%) 3px,
+      hsl(18 22% 12%) 3px, hsl(18 22% 12%) 6px,
+      hsl(32 20% 19%) 6px, hsl(32 20% 19%) 9px,
+      hsl(12 18% 11%) 9px, hsl(12 18% 11%) 13px,
+      hsl(28 24% 17%) 13px, hsl(28 24% 17%) 16px);
+  opacity: 0.5;
+}
+.library-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 42%, transparent 0%, var(--bg-0) 82%);
+}
 
 .sign {
   font-family: 'Caveat', 'Fraunces', cursive, serif; font-size: 24px; background: #2a1d13; color: var(--text);

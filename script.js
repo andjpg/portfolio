@@ -18,7 +18,7 @@
       stack: "Product · Consulting · Data · Engineering",
       proven: "PwC · WizLearnr · Guidewire · Capgemini · Samsung R&D",
       shipped: "6+ features · 20M+ data points · 100+ interviews",
-      deploy: "Cross-functional — plays well with product, data and eng teams alike",
+      deploy: "Versatile — plays well with any team",
       track: "—",
     },
     product: {
@@ -26,7 +26,7 @@
       stack: "Prompt Engineering · Wireframing · Market Research",
       proven: "WizLearnr, Founder's Office",
       shipped: "MVP roadmap shortlisted by the Telangana Government",
-      deploy: "You need 0→1 discovery, fast",
+      deploy: "Curious, fast-moving, zero-to-one",
       track: "PRODUCT",
     },
     consulting: {
@@ -34,7 +34,7 @@
       stack: "SAP IBP · Financial Modeling · Sensitivity Analysis",
       proven: "PwC · HP Tech Ventures",
       shipped: "Master-data cleanup for a live SAP IBP rollout",
-      deploy: "You need the mess explained to execs",
+      deploy: "Methodical, client-facing, unflappable",
       track: "CONSULTING",
     },
     data: {
@@ -42,7 +42,7 @@
       stack: "Snowflake · Python · Tableau · Machine Learning",
       proven: "Capgemini · Samsung R&D · Consilience.AI",
       shipped: "20M+ data points migrated, compute cost −30%",
-      deploy: "You need a pipeline that doesn't break",
+      deploy: "Precise, high-throughput, unglamorous",
       track: "DATA",
     },
     engineering: {
@@ -50,7 +50,7 @@
       stack: "Java · AWS · Security & Auth · Cloud Platforms",
       proven: "Guidewire Software",
       shipped: "6+ features shipped, 30+ vulnerabilities closed",
-      deploy: "You need it shipped and secure",
+      deploy: "Deliberate, secure, ships quietly",
       track: "ENGINEERING",
     },
   };
